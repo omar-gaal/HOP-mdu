@@ -1,0 +1,17 @@
+
+
+{
+  "name": "my-novicell-feature",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "nuxt": "^3.12.2",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@vueuse/nuxt": "^10.11.0",
+    "typescript": "^5.4.5"
+  }
+}
