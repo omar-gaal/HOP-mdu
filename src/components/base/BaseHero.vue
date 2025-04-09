@@ -1,3 +1,4 @@
+<!-- Hero (med title, image, CTA) -->
 <script setup lang="ts">
 defineProps<{
   heading: string;

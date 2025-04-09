@@ -9,6 +9,8 @@
       <NuxtLink to="/about">About</NuxtLink>
     </nav>
 
-    <NuxtPage />
+    <NuxtLayout>
+        <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

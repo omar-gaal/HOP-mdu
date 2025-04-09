@@ -1,3 +1,4 @@
+<!-- Fallback side til almindeligt content -->
 <script></script>
 
 <template>
