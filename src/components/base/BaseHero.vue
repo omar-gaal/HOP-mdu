@@ -1,14 +1,19 @@
-<!-- Hero (med title, image, CTA) -->
 <script setup lang="ts">
-defineProps<{
-  heading: string;
-  subheading: string;
-}>();
+import BaseImage from './baseImage.vue';
+import BaseHeroImage from '../../assets/img/heroImage-1.webp';
+// import BaseHeroImage from '/img/heroImage-1.webp';
+
+
+
+
 </script>
 
 <template>
-  <section class="py-12 text-center">
-    <h1 class="text-4xl font-bold mb-4">{{ heading }}</h1>
-    <p class="text-xl text-gray-600">{{ subheading }}</p>
-  </section>
-</template>
+    <BaseImage
+      :src="BaseHeroImage"
+      alt="Hero background"
+      width="1920"
+      height="800"
+      className="w-full object-cover"
+    />
+  </template>

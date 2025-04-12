@@ -12,6 +12,6 @@ export default defineNuxtConfig({
 
 
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt'],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/image'],
   compatibilityDate: '2025-03-23'
 });
