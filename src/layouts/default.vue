@@ -5,7 +5,7 @@ import DesktopNav from '~/Navigation/DesktopNav.vue';
 </script>
 
 <template>
-  <DesktopNav/>
+  <DesktopNav/> 
 
   <div >
     <slot />
