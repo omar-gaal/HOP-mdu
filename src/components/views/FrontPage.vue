@@ -4,6 +4,8 @@
 <script setup lang="ts">
 import BaseHero from '~/components/base/BaseHero.vue';
 import BaseButton from '~/components/base/BaseButton.vue';
+import DesktopMyPageNavigation from '~/Navigation/DesktopMyPageNavigation.vue';
+import DesktopNav from '~/Navigation/DesktopNav.vue';
 
 // defineProps<{
 //   data: {
@@ -22,15 +24,12 @@ import BaseButton from '~/components/base/BaseButton.vue';
 </script>
 
 <template>
-<BaseContainer :fullWidth = false >
-  <BaseHero/>
  
+<BaseContainer :fullWidth = false   >
+  <BaseHero/>
 </BaseContainer>
 
 
-<BaseContainer :fullWidth = true >
-  <BaseHero/>
- 
-</BaseContainer>
+
  
 </template>
