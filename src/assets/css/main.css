@@ -1,4 +1,7 @@
+@import '~/assets/css/variables.css';
+
 body {
     font-family:  inter ;
- 
+
+    background-color: #F9F9F9;
   }

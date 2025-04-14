@@ -1,13 +1,21 @@
-<script></script>
+<script setup lang="ts">
+
+</script>
 
 <template>
+  <header class="bg-primary flex items-center justify-between px-6 py-4">
+    <!-- Left side (logo) -->
+    <img class="w-28" src="../assets/icon/logo.webp" alt="Logo">
 
-<header >
-    <nav class="p-4 bg-gray-100 ">
-      <NuxtLink to="/" class="mr-4 ">Produkter</NuxtLink>
-      <NuxtLink to="/about">Services</NuxtLink>
-      <NuxtLink to="/about">Om oS</NuxtLink>
-
-    </nav>
+    <!-- Right side (nav + login) -->
+    <div class="flex items-center gap-6">
+      <nav class="text-white text-lg flex gap-4">
+        <NuxtLink to="/">Produkter</NuxtLink>
+        <NuxtLink to="/about">Services</NuxtLink>
+        <NuxtLink to="/about">Om os</NuxtLink>
+      </nav>
+      <img src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+      <BaseLoginBtn />
+    </div>
   </header>
 </template>

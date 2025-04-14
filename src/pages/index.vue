@@ -19,7 +19,7 @@ definePageMeta({
 
     <FrontPage/>
     <BaseContainer>
-      <section class=" bg-orange-400 w-full h-24">
+      <section class=" bg-white w-full h-24">
     hello world
   </section>
     </BaseContainer>
