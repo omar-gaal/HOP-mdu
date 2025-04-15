@@ -1,19 +1,42 @@
 <script setup lang="ts">
 import BaseImage from './baseImage.vue';
-import BaseHeroImage from '../../assets/img/heroImage-1.webp';
-// import BaseHeroImage from '/img/heroImage-1.webp';
+import heroImage from '../../assets/img/hero.webp'
+  
+
+
 
 
 
 
 </script>
-
 <template>
-    <BaseImage
-      :src="BaseHeroImage"
-      alt="Hero background"
-      width="1920"
-      height="800"
-      className="w-full object-cover"
+
+
+  <BaseImage
+  :src="heroImage"
+  alt="Hero background"
+  :width="1280"
+  :height="854"
+  class="w-full object-cover relative  h-[856px]"
     />
-  </template>
+
+
+
+
+<div class="flex flex-col gap-4 absolute bottom-1/4 right-1/8 pl-6">
+
+  <h1 class="text-6xl text-white">Professionel elektronik</h1>
+  <span class="text-2xl text-white">direkte til din forretning</span>
+
+  <BaseButton
+    label="Produkter"
+    url="/"
+    :icon="true"
+    iconSize=""
+    type="button"
+    class="w-36 h-14"
+    />
+</div>
+
+</template>
+

@@ -5,8 +5,8 @@
 defineProps<{
   src: string;
   alt?: string;
-  width?: number | string;
-  height?: number | string;
+  width?: number ;
+  height?: number ;
   className?: string;
 }>();
 </script>
@@ -17,7 +17,7 @@ defineProps<{
     :alt="alt || ''"
     :width="width"
     :height="height"
-    :class="className"
+    :class="class"
     loading="lazy"
   />
 </template>
