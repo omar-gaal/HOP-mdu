@@ -18,7 +18,8 @@ import BaseHero from '~/components/base/BaseHero.vue';
 <BaseModal>
 
 <PartialLoginForm/>
-<PartialCreateForm/>
+
+<PartialCreateForm />
 
 
 </BaseModal>
