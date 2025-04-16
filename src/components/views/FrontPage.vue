@@ -5,9 +5,31 @@ import BaseHero from "~/components/base/BaseHero.vue";
 </script>
 
 <template>
-  <main class="relative">
-    <BaseContainer :fullWidth="false">
-      <BaseHero />
-    </BaseContainer>
-  </main>
+
+
+ <main>
+
+
+  <BaseContainer :fullWidth = false   >
+  <BaseHero/>
+</BaseContainer>
+
+<BaseModal>
+
+<PartialLoginForm/>
+
+<PartialCreateForm />
+
+
+</BaseModal>
+
+
+
+
+
+
+
+
+ </main> 
+
 </template>
