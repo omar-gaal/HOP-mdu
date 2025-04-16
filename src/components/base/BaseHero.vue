@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseImage from './baseImage.vue';
+import BaseImage from './BaseImage.vue';
 import heroImage from '../../assets/img/hero.webp'
   
 
@@ -25,7 +25,7 @@ import heroImage from '../../assets/img/hero.webp'
 
 <div class="flex flex-col gap-4 absolute bottom-1/4 right-1/8 pl-6">
 
-  <h1 class="text-6xl text-white">Professionel elektronik</h1>
+  <h1 class="text-4xl text-white">Professionel elektronik</h1>
   <span class="text-2xl text-white">direkte til din forretning</span>
 
   <BaseButton
