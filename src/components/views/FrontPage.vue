@@ -1,13 +1,12 @@
 <!-- Hele forsiden – kalder fx BaseHero, produktgrid -->
 
-
 <script setup lang="ts">
-import BaseHero from '~/components/base/BaseHero.vue';
-
-
+import BaseHero from "~/components/base/BaseHero.vue";
 </script>
 
 <template>
+
+
  <main>
 
 
@@ -15,10 +14,22 @@ import BaseHero from '~/components/base/BaseHero.vue';
   <BaseHero/>
 </BaseContainer>
 
+<BaseModal>
+
+<PartialLoginForm/>
+
+<PartialCreateForm />
+
+
+</BaseModal>
+
+
+
 
 
 
 
 
  </main> 
+
 </template>

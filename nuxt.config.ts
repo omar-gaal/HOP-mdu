@@ -32,7 +32,13 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/google-fonts',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    [
+      '@pinia/nuxt',
+      {
+        autoImports: ['defineStore', 'acceptHMRUpdate', ['defineStore', 'definePiniaStore']]
+      }
+    ],
   ],
   compatibilityDate: '2025-03-23'
 });
