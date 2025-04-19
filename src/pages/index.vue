@@ -20,7 +20,7 @@ definePageMeta({
     <FrontPage/>
     <BaseContainer>
       <section class=" bg-white w-full h-24">
-    hello world
+    Produkt list page 
   </section>
     </BaseContainer>
  
