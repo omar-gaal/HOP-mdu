@@ -18,11 +18,7 @@ definePageMeta({
 <template>
 
     <FrontPage/>
-    <BaseContainer>
-      <section class=" bg-white w-full h-24">
-    Produkt list page 
-  </section>
-    </BaseContainer>
- 
+
+  
 
 </template>

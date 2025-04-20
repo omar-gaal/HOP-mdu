@@ -24,6 +24,13 @@ import BaseHero from "~/components/base/BaseHero.vue";
 </BaseModal>
 
 
+<BaseContainer>
+      <section class=" bg-white w-full py-6">
+       <PartialProductCard/>
+      </section>
+ </BaseContainer> 
+
+
 
 
 
