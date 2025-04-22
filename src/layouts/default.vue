@@ -10,7 +10,7 @@ const isMobile = computed(() => width.value < 768);
 <template>
   <DesktopNav v-if="!isMobile" />
   <MobileNav v-else />
- 
+
 
   <div>
     <slot />

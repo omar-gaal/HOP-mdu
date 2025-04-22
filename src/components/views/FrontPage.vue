@@ -2,12 +2,11 @@
 
 <script setup lang="ts">
 import BaseHero from "~/components/base/BaseHero.vue";
+const modal = useModal();
 </script>
 
 <template>
-
-
- <main>
+  
 
 
   <BaseContainer :fullWidth = false   >
