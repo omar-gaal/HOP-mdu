@@ -17,6 +17,7 @@ definePageMeta({
 
 <template>
 
+
     <FrontPage/>
 
   
