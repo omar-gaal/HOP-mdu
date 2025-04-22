@@ -8,6 +8,7 @@ const modal = useModal();
 <template>
   
 
+<main>
 
   <BaseContainer :fullWidth = false   >
   <BaseHero/>
@@ -31,11 +32,13 @@ const modal = useModal();
 
 
 
+</main>
+ 
 
 
 
 
 
- </main> 
+
 
 </template>
