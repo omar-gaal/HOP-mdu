@@ -43,7 +43,9 @@ const productImage = ref([
 </script>
 
 <template>
+  <h1 class="text-primary text-5xl font-bold pb-6 pl-4">Alle produkter </h1>
   <div class=" grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 place-items-center  ">
+  
     <div 
       v-for="(product, index) in productImage" 
       :key="product.id" 
@@ -51,7 +53,7 @@ const productImage = ref([
     >
       <div class="relative bg-[#6B7280]">
         <img :src="product.image" alt="product image" class="w-full h-60 object-none" />
-        <img src="../../assets/icon/fav-p.webp" alt="favorite" class="absolute top-3 right-3 w-6 h-6" />
+        <img src="../../assets/icon/fav-p.webp" alt="favorite" class="absolute top-3 cursor-pointer right-3 w-6 h-6" />
       </div>
 
       <div class="p-4">

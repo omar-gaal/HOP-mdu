@@ -17,7 +17,7 @@ import heroImage from '../../assets/img/hero.webp'
   alt="Hero background"
   :width="1280"
   :height="854"
-  class="w-full object-cover relative  h-[856px]"
+  class="w-full object-cover relative  h-[856px]  brightness-75 "
     />
 
 
