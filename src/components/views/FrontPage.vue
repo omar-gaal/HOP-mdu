@@ -2,34 +2,19 @@
 
 <script setup lang="ts">
 import BaseHero from "~/components/base/BaseHero.vue";
+const modal = useModal();
 </script>
 
 <template>
+  <main>
+    <BaseContainer :fullWidth="false">
+      <BaseHero />
+    </BaseContainer>
 
+    <BaseModal>
+      <PartialLoginForm />
 
- <main>
-
-
-  <BaseContainer :fullWidth = false   >
-  <BaseHero/>
-</BaseContainer>
-
-<BaseModal>
-
-<PartialLoginForm/>
-
-<PartialCreateForm />
-
-
-</BaseModal>
-
-
-
-
-
-
-
-
- </main> 
-
+      <!-- <PartialCreateForm /> -->
+    </BaseModal>
+  </main>
 </template>

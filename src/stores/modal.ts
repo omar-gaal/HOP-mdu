@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia'
 
 export const useModal = defineStore('modal', () => {
-  const isOpen = shallowRef<boolean>(true);
+  const isOpen = shallowRef<boolean>(false);
   
   function close () {
    isOpen.value = false;
