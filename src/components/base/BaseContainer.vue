@@ -17,7 +17,7 @@ const props = withDefaults(
       isFrontpage
         ? 'max-w-6xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8'
         : isMypage
-        ? 'max-w-5xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8'
+        ? 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8'
         : '' // fallback if none true
     ]"
   >
