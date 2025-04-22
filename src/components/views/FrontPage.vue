@@ -10,7 +10,7 @@ import BaseHero from "~/components/base/BaseHero.vue";
  <main>
 
 
-  <BaseContainer :fullWidth = false   >
+  <BaseContainer :isFrontpage = false   >
   <BaseHero/>
 </BaseContainer>
 
@@ -24,7 +24,7 @@ import BaseHero from "~/components/base/BaseHero.vue";
 </BaseModal>
 
 
-<BaseContainer>
+<BaseContainer :isFrontpage = true>
       <section class=" bg-white w-full py-6">
        <PartialProductCard/>
       </section>

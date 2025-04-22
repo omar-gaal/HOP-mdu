@@ -18,7 +18,12 @@ const userData = ref([
 
 <template>
 
-<BaseContainer>
+<BaseContainer :is-mypage="true">
+
+    <div class="flex justify-between ">
+  <h2 class="text-2xl">Hej Omar</h2>
+  <h2 class="underline text-2xl">Log ud</h2>
+</div>
 
 <PartialAccountNavigation/>
 

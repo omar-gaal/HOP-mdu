@@ -4,5 +4,6 @@
 
 <template>
 
+<h1>fav page</h1>
     
 </template>
