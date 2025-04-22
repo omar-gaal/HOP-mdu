@@ -6,15 +6,36 @@ const modal = useModal();
 </script>
 
 <template>
-  <main>
-    <BaseContainer :fullWidth="false">
-      <BaseHero />
-    </BaseContainer>
+  
 
-    <BaseModal>
-      <PartialLoginForm />
 
-      <!-- <PartialCreateForm /> -->
-    </BaseModal>
-  </main>
+  <BaseContainer :fullWidth = false   >
+  <BaseHero/>
+</BaseContainer>
+
+<BaseModal>
+
+<PartialLoginForm/>
+
+<PartialCreateForm />
+
+
+</BaseModal>
+
+
+<BaseContainer>
+      <section class=" bg-white w-full py-6">
+       <PartialProductCard/>
+      </section>
+ </BaseContainer> 
+
+
+
+
+
+
+
+
+ </main> 
+
 </template>
