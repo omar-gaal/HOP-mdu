@@ -15,6 +15,12 @@ const isMobile = computed(() => width.value < 768);
   <div>
     <slot />
   </div>
+
+    <TheFooter></TheFooter>
+
+
+
+
+
   
-  <TheFooter></TheFooter>
 </template>
