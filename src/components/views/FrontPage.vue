@@ -5,38 +5,21 @@ import BaseHero from "~/components/base/BaseHero.vue";
 </script>
 
 <template>
+  <main>
+    <BaseContainer :fullWidth="false">
+      <BaseHero />
+    </BaseContainer>
 
+    <BaseModal>
+      <PartialLoginForm />
 
- <main>
+      <PartialCreateForm />
+    </BaseModal>
 
-
-  <BaseContainer :isFrontpage = false   >
-  <BaseHero/>
-</BaseContainer>
-
-<BaseModal>
-
-<PartialLoginForm/>
-
-<PartialCreateForm />
-
-
-</BaseModal>
-
-
-<BaseContainer :isFrontpage = true>
-      <section class=" bg-white w-full py-6">
-       <PartialProductCard/>
+    <BaseContainer>
+      <section class="bg-white w-full py-6">
+        <PartialProductCard />
       </section>
- </BaseContainer> 
-
-
-
-
-
-
-
-
- </main> 
-
+    </BaseContainer>
+  </main>
 </template>
