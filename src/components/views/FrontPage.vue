@@ -6,20 +6,25 @@ import BaseHero from "~/components/base/BaseHero.vue";
 
 <template>
   <main>
-    <BaseContainer :fullWidth="false">
-      <BaseHero />
-    </BaseContainer>
+  <BaseContainer :isFrontpage = false   >
+  <BaseHero/>
+</BaseContainer>
 
-    <BaseModal>
-      <PartialLoginForm />
+<BaseModal>
 
-      <PartialCreateForm />
-    </BaseModal>
+<PartialLoginForm/>
 
-    <BaseContainer>
-      <section class="bg-white w-full py-6">
-        <PartialProductCard />
+<PartialCreateForm />
+
+
+</BaseModal>
+
+
+<BaseContainer :isFrontpage = true>
+      <section class=" bg-white w-full py-6">
+       <PartialProductCard/>
       </section>
-    </BaseContainer>
+ </BaseContainer> 
+
   </main>
 </template>
