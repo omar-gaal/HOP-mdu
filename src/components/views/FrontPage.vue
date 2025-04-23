@@ -2,14 +2,15 @@
 
 <script setup lang="ts">
 import BaseHero from "~/components/base/BaseHero.vue";
-const modal = useModal();
 </script>
 
 <template>
-  
 
 
-  <BaseContainer :fullWidth = false   >
+ <main>
+
+
+  <BaseContainer :isFrontpage = false   >
   <BaseHero/>
 </BaseContainer>
 
@@ -23,7 +24,7 @@ const modal = useModal();
 </BaseModal>
 
 
-<BaseContainer>
+<BaseContainer :isFrontpage = true>
       <section class=" bg-white w-full py-6">
        <PartialProductCard/>
       </section>
