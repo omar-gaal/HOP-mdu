@@ -12,7 +12,7 @@ const modal = useModal();
   <TransitionGroup name="fade">
     <div
       v-if="modal.isOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-0"
     >
       <div class="bg-primary rounded-lg shadow-lg p-o max-w-lg w-full relative">
         <slot />
