@@ -27,7 +27,15 @@ import horeboffer from '@/assets/img/horeboffer.webp';
 
 
 // image card data 
-const productData = ([      
+interface ProductItem {
+  id: number;
+  image: string;
+  varenr: string;
+  productName: string;
+  price: string;
+  stock: string;
+}
+const productData: ProductItem[] = ([      
   {   
     id: 1,
     image: laptop,
