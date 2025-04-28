@@ -1,14 +1,28 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useModal } from "@/stores/modal";
+import { useAuthStore } from '@/stores/auth';
+
 const modal = useModal();
+const authStore = useAuthStore();
+
+const email = ref('');
+const password = ref('');
+
+async function handleLogin() {
+  const success = await authStore.login(email.value, password.value);
+  if (success) {
+    modal.close();
+  } else {
+    alert('Fejl ved login. Prøv igen.');
+  }
+}
 </script>
 
 <template>
   <transition name="fade">
     <div v-if="modal.activeForm === 'login'">
-      <div
-        class="bg-[var(--color-primary)] rounded-lg shadow-lg px-8 py-6 w-full max-w-screen-md text-white relative"
-      >
+      <div class="bg-[var(--color-primary)] rounded-lg shadow-lg px-8 py-6 w-full max-w-screen-md text-white relative">
         <button
           class="absolute top-4 right-5 text-[var(--color-secondary)] text-xl font-bold hover:scale-110 transition-transform"
           @click="modal.close"
@@ -18,12 +32,11 @@ const modal = useModal();
 
         <h2 class="text-xl font-semibold mb-6">Log ind</h2>
 
-        <form class="space-y-4">
+        <form @submit.prevent="handleLogin" class="space-y-4">
           <div>
-            <label for="email" class="block text-sm font-medium mb-1"
-              >Mailadresse</label
-            >
+            <label for="email" class="block text-sm font-medium mb-1">Mailadresse</label>
             <input
+              v-model="email"
               id="email"
               type="email"
               class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
@@ -31,10 +44,9 @@ const modal = useModal();
             />
           </div>
           <div>
-            <label for="password" class="block text-sm font-medium mb-1"
-              >Adgangskode</label
-            >
+            <label for="password" class="block text-sm font-medium mb-1">Adgangskode</label>
             <input
+              v-model="password"
               id="password"
               type="password"
               class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
@@ -42,11 +54,7 @@ const modal = useModal();
             />
           </div>
           <div class="flex items-center space-x-2">
-            <input
-              id="remember"
-              type="checkbox"
-              class="accent-[var(--color-secondary)]"
-            />
+            <input id="remember" type="checkbox" class="accent-[var(--color-secondary)]" />
             <label for="remember" class="text-sm">Husk mig</label>
           </div>
           <button
@@ -63,8 +71,7 @@ const modal = useModal();
             @click.prevent="modal.setForm('create')"
             class="underline text-white hover:text-[var(--color-secondary)]"
           >
-            Opret login til ny <br />
-            eller eksisterende konto
+            Opret login til ny <br /> eller eksisterende konto
           </a>
 
           <a
