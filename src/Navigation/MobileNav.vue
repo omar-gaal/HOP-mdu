@@ -22,11 +22,13 @@ const navItem = ref<NavigationItem[]>([
 <template>
   <!-- Mobile Header -->
   <header v-if="!isOpen" class="flex bg-primary h-20 justify-between items-center px-4">
-    <NuxtLink>
+    <NuxtLink to="/">
     <img src="../assets/icon/logo.webp" alt="Logo" class=" w-1/2 h-full" />
     </NuxtLink>
     <nav class="flex items-center gap-6">
-      <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
+      <NuxtLink to="/">
+        <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
+      </NuxtLink>
       <button @click="isOpen = true" aria-label="Open menu">
         <img class="h-7 w-12" src="../assets/icon/hamburgerMenu.png" alt="Open menu icon" />
       </button>
@@ -38,7 +40,7 @@ const navItem = ref<NavigationItem[]>([
   <transition  name="fade">
     <nav  v-if="isOpen" aria-label="Mobile Navigation" class="absolute top-0 left-0 w-full z-40 bg-primary">
     <header class="flex h-20 justify-between items-center px-4">
-      <NuxtLink>
+      <NuxtLink to="/">
         <img src="../assets/icon/logo.webp" alt="Logo" class=" w-1/2 h-full" />
       </NuxtLink>      <div class="flex items-center gap-6">
         <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
