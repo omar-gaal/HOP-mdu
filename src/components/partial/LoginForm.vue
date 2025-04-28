@@ -1,15 +1,11 @@
-<script setup>
-const modal = reactive({
-  isOpen: true,
-  close() {
-    modal.isOpen = false;
-  },
-});
+<script setup lang="ts">
+import { useModal } from "@/stores/modal";
+const modal = useModal();
 </script>
 
 <template>
   <transition name="fade">
-    <div v-if="modal.isOpen">
+    <div v-if="modal.activeForm === 'login'">
       <div
         class="bg-[var(--color-primary)] rounded-lg shadow-lg px-8 py-6 w-full max-w-screen-md text-white relative"
       >
@@ -64,14 +60,17 @@ const modal = reactive({
         <div class="mt-6 flex justify-between text-sm">
           <a
             href="#"
+            @click.prevent="modal.setForm('create')"
             class="underline text-white hover:text-[var(--color-secondary)]"
           >
             Opret login til ny <br />
             eller eksisterende konto
           </a>
+
           <a
             href="#"
             class="underline text-white hover:text-[var(--color-secondary)]"
+            @click.prevent="modal.setForm('forgot')"
           >
             Glemt adgangskode?
           </a>

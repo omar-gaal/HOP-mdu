@@ -1,12 +1,9 @@
-<!-- 	Optimeret Nuxt-img komponent -->
-
-
 <script setup lang="ts">
 defineProps<{
   src: string;
   alt?: string;
-  width?: number ;
-  height?: number ;
+  width?: number;
+  height?: number;
   className?: string;
 }>();
 </script>
@@ -17,7 +14,7 @@ defineProps<{
     :alt="alt || ''"
     :width="width"
     :height="height"
-    :class="class"
+    :class="className"
     loading="lazy"
   />
 </template>
