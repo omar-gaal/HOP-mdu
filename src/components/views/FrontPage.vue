@@ -1,7 +1,14 @@
-<!-- Hele forsiden – kalder fx BaseHero, produktgrid -->
-
 <script setup lang="ts">
 import BaseHero from "~/components/base/BaseHero.vue";
+
+import { useModal } from "@/stores/modal";
+import PartialLoginForm from "@/components/partial/LoginForm.vue";
+import PartialCreateForm from "@/components/partial/CreateForm.vue";
+import LoadingMessage from "@/components/partial/LoadingMessage.vue";
+import SuccessMessage from "@/components/partial/successMessage.vue";
+import ForgotPasswordForm from "@/components/partial/ForgotPasswordForm.vue";
+const modal = useModal();
+
 import ProductList from '~/components/partial/ProductList.vue'
 
 
@@ -97,25 +104,26 @@ const productData = ([
 
 ]);
 
+
 </script>
 
 <template>
   <main>
-  <BaseContainer :isFrontpage = false   >
-  <BaseHero/>
-</BaseContainer>
 
-<BaseModal>
+    <BaseContainer :fullWidth="false">
+      <BaseHero />
+      <!-- (Din login knap ligger sikkert her) -->
+    </BaseContainer>
 
-<PartialLoginForm/>
+    <BaseModal>
+      <PartialLoginForm v-if="modal.activeForm === 'login'" />
+      <PartialCreateForm v-else-if="modal.activeForm === 'create'" />
+      <LoadingMessage v-else-if="modal.activeForm === 'loading'" />
+      <SuccessMessage v-else-if="modal.activeForm === 'success'" />
+      <ForgotPasswordForm v-else-if="modal.activeForm === 'forgot'" />
+    </BaseModal>
 
-<PartialCreateForm />
-
-
-</BaseModal>
-
-
-<BaseContainer :isFrontpage="true">
+    <BaseContainer :isFrontpage="true">
     <section class="bg-white w-full py-6">
       <ProductList :products="productData" />
     </section>
