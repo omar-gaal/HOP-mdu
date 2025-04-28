@@ -5,7 +5,9 @@
 <template>
   <header class="bg-primary flex items-center justify-between px-6 py-4">
 
-    <img class="w-28" src="../assets/icon/logo.webp" alt="Logo">
+    <NuxtLink to="/">
+      <img class="w-28" src="../assets/icon/logo.webp" alt="Logo">
+    </NuxtLink>
 
     
     <div class="flex items-center gap-6">
@@ -14,7 +16,7 @@
         <NuxtLink to="/about">Services</NuxtLink>
         <NuxtLink to="/about">Om os</NuxtLink>
       </nav>
-      <img src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+        <img src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
       <BaseLoginBtn />
     </div>
   </header>
