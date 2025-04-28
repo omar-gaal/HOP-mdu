@@ -15,7 +15,9 @@ const navItem = ref([
 <template>
   <!-- Mobile Header -->
   <header v-if="!isOpen" class="flex bg-primary h-20 justify-between items-center px-4">
-    <img src="../assets/icon/logo.webp" alt="Logo" class="h-full" />
+    <NuxtLink>
+    <img src="../assets/icon/logo.webp" alt="Logo" class=" w-1/2 h-full" />
+    </NuxtLink>
     <nav class="flex items-center gap-6">
       <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
       <button @click="isOpen = true" aria-label="Open menu">
@@ -27,8 +29,9 @@ const navItem = ref([
   <!-- Dropdown Nav -->
   <nav v-else aria-label="Mobile Navigation" class="absolute top-0 left-0 w-full z-40 bg-primary">
     <header class="flex h-20 justify-between items-center px-4">
-      <img src="../assets/icon/logo.webp" alt="Logo" class="h-full" />
-      <div class="flex items-center gap-6">
+      <NuxtLink>
+        <img src="../assets/icon/logo.webp" alt="Logo" class=" w-1/2 h-full" />
+      </NuxtLink>      <div class="flex items-center gap-6">
         <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
         <button @click="isOpen = false" aria-label="Close menu">
           <img src="../assets/icon/close.png" alt="Close menu icon" />
