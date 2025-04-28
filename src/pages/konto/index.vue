@@ -1,4 +1,8 @@
 <script setup lang="ts">
+// definePageMeta({
+//   middleware: 'protected',
+// });
+
 import BaseInfoCard from '@/components/base/BaseInfoCard.vue'
 
 interface DetailItem {
