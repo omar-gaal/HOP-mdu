@@ -87,16 +87,16 @@ function handleSubmit() {
       <div class="mt-6 text-white text-sm space-y-2">
         <ul class="list-disc pl-5">
           <li :class="isLengthValid ? 'text-green-400' : 'text-white'">
-            ✔️ 8-25 tegn
+            8-25 tegn
           </li>
           <li :class="hasLowercase ? 'text-green-400' : 'text-white'">
-            ✔️ Små bogstaver
+            Små bogstaver
           </li>
           <li :class="hasUppercase ? 'text-green-400' : 'text-white'">
-            ✔️ Store bogstaver
+            Store bogstaver
           </li>
           <li :class="hasNumberOrSymbol ? 'text-green-400' : 'text-white'">
-            ✔️ Tal eller tegn
+            Tal eller tegn
           </li>
         </ul>
       </div>
