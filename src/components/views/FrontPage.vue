@@ -114,9 +114,7 @@ const productData = ([
       <BaseHero />
       <!-- (Din login knap ligger sikkert her) -->
     </BaseContainer>
-    <section class="bg-white w-full py-6">
-      <PartialProductCard />
-    </section>
+
     <BaseModal>
       <PartialLoginForm v-if="modal.activeForm === 'login'" />
       <PartialCreateForm v-else-if="modal.activeForm === 'create'" />
@@ -125,11 +123,11 @@ const productData = ([
       <ForgotPasswordForm v-else-if="modal.activeForm === 'forgot'" />
     </BaseModal>
 
-    <BaseContainer>
-      <section class="bg-white w-full py-6">
-        <!-- Eventuelt flere ting -->
-      </section>
-    </BaseContainer>
+    <BaseContainer :isFrontpage="true">
+    <section class="bg-white w-full py-6">
+      <ProductList :products="productData" />
+    </section>
+  </BaseContainer>
 
   </main>
 </template>
