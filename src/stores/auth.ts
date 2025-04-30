@@ -112,19 +112,7 @@ export const useAuthStore = defineStore('auth', {
         return false;
       }
     },
-    //   try {
-    //     await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
-    //       method: 'POST',
-    //       body: { userName: email, password },
-    //     });
-    
-        
-    //     return await this.checkAuth();
-    //   } catch (error) {
-    //     console.error('login error:', error);
-    //     return false;
-    //   }
-    // },
+
 
     async signup(name: string, email: string, userName: string, password: string) {
       try {
