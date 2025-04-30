@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import ProductCard from './ProductCard.vue'
+import ProductCard from "./ProductCard.vue";
+import BaseHero from "../base/BaseHero.vue";
 
 interface Product {
   id: number;
@@ -11,12 +12,26 @@ interface Product {
 }
 
 defineProps<{
-  products: Product[]
-}>()
+  products: Product[];
+}>();
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 place-items-center">
+  <h1 id="productSection" class="text-5xl text-black text-center w-full mb-10 mt-5">Alle produkter</h1>
+   <div class="flex flex-wrap justify-center gap-6 mb-8 text-black text-lg">
+    <span class="underline cursor-pointer">Alle produkter</span>
+    <span class="underline cursor-pointer">Computer</span>
+    <span class="underline cursor-pointer">Mobil</span>
+    <span class="underline cursor-pointer">Playstation</span>
+    <span class="underline cursor-pointer">Løbehjul</span>
+    <span class="underline cursor-pointer">Kamera</span>
+    <span class="underline cursor-pointer">Marshall</span>
+    <span class="underline cursor-pointer">Headphones</span>
+  </div>
+   
+  <div
+    class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 place-items-center"
+  >
     <ProductCard
       v-for="product in products"
       :key="product.id"
