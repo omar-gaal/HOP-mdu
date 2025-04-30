@@ -1,9 +1,12 @@
 <script setup lang="ts">
+
+
 defineProps<{
-  title: string;
-  content: string[];
-  linkText: string;
-  linkUrl: string;
+  title?: string;
+  userName?: string;
+  email?: string;
+  linkText?: string;
+  linkUrl?: string;
 }>();
 </script>
 
@@ -12,9 +15,12 @@ defineProps<{
     <div>
       <h1 class="pb-9 text-primary text-3xl font-bold">{{ title }}</h1>
       <div class="text-xl flex flex-col gap-2">
-        <p v-for="(line, index) in content" :key="index">{{ line }}</p>
+        <p >{{ userName }}</p>
+      </div>
+      <div class="text-xl flex flex-col gap-2">
+        <p >{{ email }}</p>
       </div>
     </div>
     <a :href="linkUrl" class="underline">{{ linkText }}</a>
   </div>
-</template>
+</template> 
