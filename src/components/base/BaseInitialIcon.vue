@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  initials?: string
+  initials?: string;
 }>();
 </script>
 

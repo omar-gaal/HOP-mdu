@@ -24,9 +24,11 @@ const auth = useAuthStore();
 
         <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
       <BaseLoginBtn v-if="!auth.isAuthenticated" />
-      <BaseInitialIcon v-if="auth.isAuthenticated"
-       :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
-      />
+      <NuxtLink to="/konto">
+        <BaseInitialIcon v-if="auth.isAuthenticated"
+        :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
+        />
+      </NuxtLink>
 
     </div>
   </header>

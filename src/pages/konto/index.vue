@@ -1,41 +1,14 @@
 <script setup lang="ts">
-// definePageMeta({
-//   middleware: 'protected',
-// });
+
+
+definePageMeta({    
+    middleware: 'protected',
+});
 
 import BaseInfoCard from '@/components/base/BaseInfoCard.vue'
+import { useAuthStore } from '#imports';
+const auth = useAuthStore();
 
-interface DetailItem {
-  id: number;
-  name: string;
-  mail: string;
-  number: number;
-}
-
-interface AddressItem {
-  street: string;
-  postNr: number;
-  city: string;
-  country: string;
-}
-
-const userDetail = ref<DetailItem[]>([
-  { 
-    id: 1,
-    name: 'Omar Gaal',
-    mail: 'omargaal123@gmail.com',
-    number: 4560635399,
-  }
-]);
-
-const userAddress = ref<AddressItem[]>([
-  { 
-    street: 'Frydenlunds alle nr 35 1tv',
-    postNr: 8210,
-    city: 'Aarhus',
-    country: 'Denmark',
-  }
-]);
 </script>
 
 <template>
@@ -50,25 +23,11 @@ const userAddress = ref<AddressItem[]>([
 
   <div class="flex flex-col gap-6  sm:flex-row sm:justify-between">
     <BaseInfoCard
-      title="Mine detaljer"
-      :content="[
-        userDetail[0].name,
-        userDetail[0].mail,
-        '+' + userDetail[0].number
-      ]"
-      linkText="Rediger"
-      linkUrl="/konto/profile"
-    />
-
-    <BaseInfoCard
-      title="Adresse"
-      :content="[
-        userAddress[0].street,
-        `${userAddress[0].postNr} ${userAddress[0].city}`,
-        userAddress[0].country
-      ]"
-      linkText="Opdater adresse"
-      linkUrl="/konto/profile"
+       :title="'Mine detaljer'"
+      :userName="auth.user?.userName"
+       :email="auth.user?.email"
+       linkText="Mine detaljer"
+       linkUrl="/konto/profile"
     />
   </div>
 

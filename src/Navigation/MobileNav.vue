@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useAuthStore } from '#imports';
 
+const auth = useAuthStore();
 interface NavigationItem {
   navName: string;
   href: string;
@@ -27,8 +29,15 @@ const navItem = ref<NavigationItem[]>([
     </NuxtLink>
     <nav class="flex items-center gap-6">
       <NuxtLink to="/">
-        <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
+        <img v-if="!auth.isAuthenticated" class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
       </NuxtLink>
+      <NuxtLink to="/konto">
+        <BaseInitialIcon v-if="auth.isAuthenticated"
+      class="w-12 h-12 "
+       :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
+      />
+      </NuxtLink>
+     
       <button @click="isOpen = true" aria-label="Open menu">
         <img class="h-7 w-12" src="../assets/icon/hamburgerMenu.png" alt="Open menu icon" />
       </button>
@@ -43,7 +52,13 @@ const navItem = ref<NavigationItem[]>([
       <NuxtLink to="/">
         <img src="../assets/icon/logo.webp" alt="Logo" class=" w-1/2 h-full" />
       </NuxtLink>      <div class="flex items-center gap-6">
-        <img class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
+        <img v-if="!auth.isAuthenticated" class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
+        <NuxtLink to="/konto">
+        <BaseInitialIcon v-if="auth.isAuthenticated"
+      class="w-12 h-12 "
+       :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
+      />
+      </NuxtLink>
         <button @click="isOpen = false" aria-label="Close menu">
           <img src="../assets/icon/close.png" alt="Close menu icon" />
         </button>
