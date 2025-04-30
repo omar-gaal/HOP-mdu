@@ -1,4 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+
+// const initials = computed(() => {
+//   if (!authStore.user?.name) return '';
+//   const names = authStore.user.name.split(' ');
+//   return (names[0]?.[0] ?? '') + (names[1]?.[0] ?? '');
+// });
+
+
+
+</script>
 
 <template>
   <header class="bg-primary flex items-center justify-between px-6 py-4">
@@ -13,6 +24,7 @@
       </nav>
         <img src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
       <BaseLoginBtn />
+      <!-- <span>{{ initials }}</span> -->
     </div>
   </header>
 </template>
