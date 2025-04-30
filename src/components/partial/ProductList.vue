@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ProductCard from "./ProductCard.vue";
-import BaseHero from "../base/BaseHero.vue";
+
 
 interface Product {
   id: number;
@@ -17,8 +17,8 @@ defineProps<{
 </script>
 
 <template>
-  <h1 id="productSection" class="text-5xl text-black text-center w-full mb-10 mt-5">Alle produkter</h1>
-   <div class="flex flex-wrap justify-center gap-6 mb-8 text-black text-lg">
+  <h1 id="productSection" class="text-5xl text-black flex flex-col gap-4 left-25 pl-20 w-full mb-10 mt-5">Alle produkter</h1>
+   <div class="flex flex-wrap left-25 pl-20 gap-6 mb-8 text-black text-lg">
     <span class="underline cursor-pointer">Alle produkter</span>
     <span class="underline cursor-pointer">Computer</span>
     <span class="underline cursor-pointer">Mobil</span>

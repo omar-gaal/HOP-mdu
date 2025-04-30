@@ -1,13 +1,14 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue";
-import baseImage from "./baseImage.vue";
+import BaseImage from "./BaseImage.vue";
 import BaseButton from "./BaseButton.vue";
 import heroImage from "../../assets/img/hero.webp";
 
-const productSection = ref<HTMLElement | null>(null);
-
 function scrollToProducts() {
-  productSection.value?.scrollIntoView({ behavior: "smooth" });
+  const section = document.getElementById("productSection");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 }
 </script>
 
@@ -17,10 +18,10 @@ function scrollToProducts() {
     alt="Hero background"
     :width="1280"
     :height="854"
-    :className="'w-full object-cover relative h-[856px] brightness-75'"
+    :class="'w-full object-cover relative h-[856px] brightness-75'"
   />
 
-  <div class="flex flex-col gap-4 absolute bottom-1/2 right-1/2 pl-6">
+  <div class="flex flex-col gap-4 absolute bottom-1/4 left-28 pl-30">
     <h1 class="text-4xl text-white">Professionel elektronik</h1>
     <span class="text-2xl text-white">direkte til din forretning</span>
 
