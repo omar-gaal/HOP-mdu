@@ -20,7 +20,6 @@ interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
 }
-
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
     user: null,
@@ -30,38 +29,48 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   actions: {
+    init() {
+      const storedUser = localStorage.getItem('authUser');
+      if (storedUser) {
+        this.user = JSON.parse(storedUser);
+        this.isAuthenticated = true;
+      }
+    },
+
     setUser(user: User) {
       this.user = user;
       this.isAuthenticated = true;
+      localStorage.setItem('authUser', JSON.stringify(user));
     },
 
     setToken(token: string) {
       this.token = token;
-     
     },
 
     clearAuth() {
       this.user = null;
       this.token = null;
       this.isAuthenticated = false;
+      localStorage.removeItem('authUser');
     },
 
     async login(email: string, password: string) {
       try {
-        const response = await $fetch('/api/auth/login', {
+        const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
           method: 'POST',
           body: { userName: email, password },
         });
-        await this.checkAuth()
+        console.log(response);
         return true;
       } catch (error) {
         console.error('login error:', error);
         return false;
       }
     },
+
     async signup(name: string, email: string, userName: string, password: string) {
       try {
-        const response = await $fetch('/api/auth/signup', {
+        const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/members', {
           method: 'POST',
           body: { name, email, userName, password },
         });
@@ -76,9 +85,6 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-
-
-
     async logout() {
       try {
         await $fetch('/api/auth/logout', { method: 'POST' });
@@ -88,23 +94,20 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-
-
-
     async checkAuth() {
       try {
-        const response = await $fetch('/api/member-profile', {
+        const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/is-logged-in', {
           method: 'GET',
           credentials: 'include',
         });
-    
+
         this.setUser({
           id: response.key,
           email: response.email,
           name: response.name,
         });
         this.isAuthenticated = true;
-        return true; 
+        return true;
       } catch {
         this.clearAuth();
         return false;
@@ -112,14 +115,9 @@ export const useAuthStore = defineStore('auth', {
         this.loading = false;
       }
     }
-
-
-
-
-  },
-
-
+  }
 });
+
 
 
 
