@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+
   const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/members', {
     method: 'POST',
     headers: {
@@ -18,4 +19,7 @@ export default defineEventHandler(async (event) => {
   });
 
   return response;
+  
 });
+
+// console.log('SIGNUP BODY:', body)
