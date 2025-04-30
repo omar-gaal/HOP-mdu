@@ -9,22 +9,36 @@ import SuccessMessage from "@/components/partial/successMessage.vue";
 import ForgotPasswordForm from "@/components/partial/ForgotPasswordForm.vue";
 const modal = useModal();
 
-import ProductList from "~/components/partial/ProductList.vue";
 
-// all image
-import laptop from "@/assets/img/laptop.webp";
-import iphone from "@/assets/img/iphone.webp";
-import playstationPro from "@/assets/img/ps5.webp";
-import scooter from "@/assets/img/scooter.webp";
-import microphone from "@/assets/img/mikrofon.webp";
-import kamera from "@/assets/img/kamera.webp";
-import hojtaler from "@/assets/img/hojtaler.webp";
-import kamera2 from "@/assets/img/kamera2.webp";
-import horeboffer from "@/assets/img/horeboffer.webp";
+import ProductList from '~/components/partial/ProductList.vue'
 
-// image card data
-const productData = [
-  {
+
+
+
+// all image 
+import laptop from '@/assets/img/laptop.webp';
+import iphone from '@/assets/img/iphone.webp';
+import playstationPro from '@/assets/img/ps5.webp';
+import scooter from '@/assets/img/scooter.webp';
+import microphone from '@/assets/img/mikrofon.webp';
+import kamera from '@/assets/img/kamera.webp';
+import hojtaler from '@/assets/img/hojtaler.webp';
+import kamera2 from '@/assets/img/kamera2.webp';
+import horeboffer from '@/assets/img/horeboffer.webp';
+
+
+// image card data 
+interface ProductItem {
+  id: number;
+  image: string;
+  varenr: string;
+  productName: string;
+  price: string;
+  stock: string;
+}
+const productData: ProductItem[] = ([      
+  {   
+
     id: 1,
     image: laptop,
     varenr: "Varenr. 77777",

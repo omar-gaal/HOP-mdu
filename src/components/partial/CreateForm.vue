@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useModal } from "@/stores/modal";
+import { useAuthStore } from '@/stores/auth';
 
 const modal = useModal();
+const authStore = useAuthStore();
 
+const name = ref("");
 const email = ref("");
+const userName = ref("")
 const password = ref("");
+
 const confirmPassword = ref("");
 const brugernavn = ref("");
 
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
+
 
 const isLengthValid = computed(
   () => password.value.length >= 8 && password.value.length <= 25
@@ -19,17 +25,30 @@ const hasLowercase = computed(() => /[a-z]/.test(password.value));
 const hasUppercase = computed(() => /[A-Z]/.test(password.value));
 const hasNumberOrSymbol = computed(() => /[\d\W]/.test(password.value));
 
-function handleSubmit() {
-  if (email.value && password.value && confirmPassword.value) {
-    modal.setForm("loading");
-    setTimeout(() => {
-      modal.setForm("success");
-      setTimeout(() => {
-        modal.close();
-      }, 3000);
-    }, 2000);
-  } else {
+async function handleSubmit() {
+  // !confirmPassword.value
+  if (!name.value || !email.value || !userName.value || !password.value ) {
     alert("Udfyld venligst alle felter.");
+    return;
+  }
+
+  // if (password.value !== confirmPassword.value) {
+  //   alert("Adgangskoderne matcher ikke.");
+  //   return;
+  // }
+
+  modal.setForm("loading");
+
+  const result = await authStore.signup(name.value, email.value, userName.value, password.value);
+
+  if (result.success) {
+    modal.setForm("success");
+    setTimeout(() => {
+      modal.close();
+    }, 3000);
+  } else {
+    alert(result.error || "Noget gik galt. Prøv igen.");
+    modal.setForm("create"); // Stay on create form if error
   }
 }
 </script>
@@ -53,6 +72,19 @@ function handleSubmit() {
     <h2 class="text-xl font-semibold mb-6">Opret konto</h2>
 
     <form @submit.prevent="handleSubmit" class="space-y-4">
+
+      <div>
+  <label for="name" class="block text-sm font-medium mb-1">Fulde Navn</label>
+  <input
+    id="name"
+    v-model="name"
+    type="text"
+    class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
+    placeholder="Indtast dit fulde navn"
+  />
+</div>
+
+
       <div>
         <label for="email" class="block text-sm font-medium mb-1"
           >Mailadresse</label
@@ -67,8 +99,21 @@ function handleSubmit() {
       </div>
 
       <div>
-        <label for="brugernavn" class="block text-sm font-medium mb-1"
-          >Brugernavn</label
+
+       <label for="userName" class="block text-sm font-medium mb-1">Brugernavn</label>
+        <input
+        id="userName"
+       v-model="userName"
+       type="text"
+       class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
+       placeholder="Vælg et brugernavn"
+      />
+        </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium mb-1"
+          >Adgangskode</label
+
         >
         <input
           id="brugernavn"
@@ -103,8 +148,10 @@ function handleSubmit() {
         </button>
       </div>
 
+
       <div class="relative">
         <label for="confirmPassword" class="block text-sm font-medium mb-1">Bekræft adgangskode</label>
+
         <input
           id="confirmPassword"
           v-model="confirmPassword"
@@ -126,6 +173,8 @@ function handleSubmit() {
           </svg>
         </button>
       </div>
+
+
 
       <div class="mt-6 text-white text-sm space-y-2">
         <ul class="list-disc pl-5">
