@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 //   "name": "Omar Gaal",
 //   "email": "omar@example.com",
 //   "userName": "oog",
-//   "password": "Password123!"
+//   "password": "Omar123456"
 // }
 
 
@@ -13,6 +13,25 @@ interface User {
   email: string;
   name: string;
   userName: string; 
+}
+
+interface Member {
+  key: string; 
+  name: string;
+  email: string;
+  userName: string;
+}
+
+interface LoginResponse {
+  token: string;
+  member: Member;
+}
+
+interface CheckAuthResponse  {
+  key: string;
+  email: string;
+  name: string;
+  userName: string
 }
 
 interface AuthState {
@@ -31,17 +50,25 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     init() {
-      const storedUser = localStorage.getItem('authUser');
-      if (storedUser) {
-        this.user = JSON.parse(storedUser);
-        this.isAuthenticated = true;
+      const authUser = useCookie('authUser', { maxAge: 60 * 60 * 24 * 7 });
+
+      try {
+        if (authUser.value) {
+          this.user = JSON.parse(authUser.value);
+          this.isAuthenticated = true;  
+        } 
+      } catch(error) {
+        console.log('Invalid cookie data', error)
+        authUser.value = null
       }
+
     },
 
     setUser(user: User) {
       this.user = user;
       this.isAuthenticated = true;
-      localStorage.setItem('authUser', JSON.stringify(user));
+      const authUser = useCookie('authUser');
+      authUser.value = JSON.stringify(user)
     },
 
     setToken(token: string) {
@@ -52,12 +79,17 @@ export const useAuthStore = defineStore('auth', {
       this.user = null;
       this.token = null;
       this.isAuthenticated = false;
-      localStorage.removeItem('authUser');
+
+      const authUser = useCookie('authUser')
+      authUser.value = null;
+
+      const authToken = useCookie('auth')
+      authToken.value = null 
     },
 
     async login(email: string, password: string) {
       try {
-        const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
+        const response: LoginResponse  = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
           method: 'POST',
           body: { userName: email, password },
         });
@@ -80,8 +112,6 @@ export const useAuthStore = defineStore('auth', {
         return false;
       }
     },
-
-    // async login(email: string, password: string) {
     //   try {
     //     await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
     //       method: 'POST',
@@ -123,33 +153,11 @@ export const useAuthStore = defineStore('auth', {
     },
 
 
-    // async checkAuth() {
-    //   try {
-    //     const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile', {
-    //       method: 'GET',
-    //       credentials: 'include',
-    //     });
-    
-    //     this.setUser({
-    //       id: response.key,
-    //       email: response.email,
-    //       name: response.name,
-    //       userName: response.userName,
-    //     });
-    
-    //     this.isAuthenticated = true;
-    //     return true;
-    //   } catch {
-    //     this.clearAuth();
-    //     return false;
-    //   } finally {
-    //     this.loading = false;
-    //   }
-    // },
+
 
     async checkAuth() {
       try {
-        const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/is-logged-in', {
+        const response: CheckAuthResponse  = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/is-logged-in', {
           method: 'GET',
           credentials: 'include',
         });
