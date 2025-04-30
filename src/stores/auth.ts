@@ -60,7 +60,14 @@ export const useAuthStore = defineStore('auth', {
           method: 'POST',
           body: { userName: email, password },
         });
-        console.log(response);
+    
+        
+        this.setUser({
+          id: response.key,
+          email: response.email,
+          name: response.name,
+        });
+    
         return true;
       } catch (error) {
         console.error('login error:', error);
