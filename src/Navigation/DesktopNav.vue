@@ -26,8 +26,6 @@ const auth = useAuthStore();
       <BaseInitialIcon v-if="auth.isAuthenticated"
        :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
       />
-      
-      <!-- <span>{{ initials }}</span> -->
     </div>
   </header>
 </template>
