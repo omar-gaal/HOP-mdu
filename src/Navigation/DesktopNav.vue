@@ -1,5 +1,8 @@
 <script setup lang="ts">
 
+import { useAuthStore } from '@/stores/auth';
+
+const auth = useAuthStore();
 
 // const initials = computed(() => {
 //   if (!authStore.user?.name) return '';
@@ -22,8 +25,10 @@
         <NuxtLink to="/page-not-found">Services</NuxtLink>
         <NuxtLink to="/page-not-found">Om os</NuxtLink>
       </nav>
-        <img src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
-      <BaseLoginBtn />
+        <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+      <BaseLoginBtn v-if="!auth.isAuthenticated" />
+      <BaseInitialIcon v-if="auth.isAuthenticated"/>
+      
       <!-- <span>{{ initials }}</span> -->
     </div>
   </header>
