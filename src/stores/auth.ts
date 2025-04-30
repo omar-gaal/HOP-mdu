@@ -12,6 +12,7 @@ interface User {
   id: string;
   email: string;
   name: string;
+  userName: string; 
 }
 
 interface AuthState {
@@ -61,11 +62,16 @@ export const useAuthStore = defineStore('auth', {
           body: { userName: email, password },
         });
     
-        
+        const authToken = useCookie('auth')
+        if(response) {
+          authToken.value = response.token;
+        }
+        console.log('login response:', response.member);
         this.setUser({
-          id: response.key,
-          email: response.email,
-          name: response.name,
+          id: response.member.key,
+          email: response.member.email,
+          name: response.member.name,
+          userName: response.member.userName,
         });
     
         return true;
@@ -74,6 +80,21 @@ export const useAuthStore = defineStore('auth', {
         return false;
       }
     },
+
+    // async login(email: string, password: string) {
+    //   try {
+    //     await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
+    //       method: 'POST',
+    //       body: { userName: email, password },
+    //     });
+    
+        
+    //     return await this.checkAuth();
+    //   } catch (error) {
+    //     console.error('login error:', error);
+    //     return false;
+    //   }
+    // },
 
     async signup(name: string, email: string, userName: string, password: string) {
       try {
@@ -101,6 +122,31 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+
+    // async checkAuth() {
+    //   try {
+    //     const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile', {
+    //       method: 'GET',
+    //       credentials: 'include',
+    //     });
+    
+    //     this.setUser({
+    //       id: response.key,
+    //       email: response.email,
+    //       name: response.name,
+    //       userName: response.userName,
+    //     });
+    
+    //     this.isAuthenticated = true;
+    //     return true;
+    //   } catch {
+    //     this.clearAuth();
+    //     return false;
+    //   } finally {
+    //     this.loading = false;
+    //   }
+    // },
+
     async checkAuth() {
       try {
         const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/is-logged-in', {
@@ -112,6 +158,7 @@ export const useAuthStore = defineStore('auth', {
           id: response.key,
           email: response.email,
           name: response.name,
+          userName: response.userName,
         });
         this.isAuthenticated = true;
         return true;
