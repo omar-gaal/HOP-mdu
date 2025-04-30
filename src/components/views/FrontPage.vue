@@ -111,7 +111,7 @@ const productData: ProductItem[] = ([
     price: "15000,00 DKK",
     stock: "5 på lager",
   },
-];
+]);
 </script>
 
 <template>
