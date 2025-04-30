@@ -4,11 +4,7 @@ import { useAuthStore } from '@/stores/auth';
 
 const auth = useAuthStore();
 
-// const initials = computed(() => {
-//   if (!authStore.user?.name) return '';
-//   const names = authStore.user.name.split(' ');
-//   return (names[0]?.[0] ?? '') + (names[1]?.[0] ?? '');
-// });
+
 
 
 
@@ -27,7 +23,9 @@ const auth = useAuthStore();
       </nav>
         <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
       <BaseLoginBtn v-if="!auth.isAuthenticated" />
-      <BaseInitialIcon v-if="auth.isAuthenticated"/>
+      <BaseInitialIcon v-if="auth.isAuthenticated"
+       :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
+      />
       
       <!-- <span>{{ initials }}</span> -->
     </div>
