@@ -6,7 +6,7 @@ import { useAuthStore } from '@/stores/auth';
 const modal = useModal();
 const authStore = useAuthStore();
 
-// const email = ref('');
+
 const userName = ref('')
 const password = ref('');
 
@@ -42,7 +42,7 @@ async function handleLogin() {
             <input
               v-model="userName"
               id="userName"
-              type="email"
+              type="text"
               class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
               placeholder="Indtast din mail"
             />
