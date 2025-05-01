@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+import { useAuthStore } from '@/stores/auth';
+
+const auth = useAuthStore();
+
+
+
+
+
+</script>
 
 <template>
   <header class="bg-primary flex items-center justify-between px-20 py-102">
@@ -11,8 +21,19 @@
 <NuxtLink to="/page-not-found" class="text-[25px]">Services</NuxtLink>
 <NuxtLink to="/page-not-found" class="text-[25px]">Om os</NuxtLink>
       </nav>
-      <img src="../assets/icon/fav-w.png" alt="heart icon" class="w-8 h-8" />
-      <BaseLoginBtn />
+
+
+        <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+      <BaseLoginBtn v-if="!auth.isAuthenticated" />
+      <NuxtLink to="/konto">
+        <BaseInitialIcon v-if="auth.isAuthenticated"
+        :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
+        />
+      </NuxtLink>
+
+
+    
+
     </div>
   </header>
 </template>
