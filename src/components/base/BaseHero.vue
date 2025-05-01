@@ -18,7 +18,7 @@ function scrollToProducts() {
     alt="Hero background"
     :width="1280"
     :height="854"
-    :class="'w-full object-cover relative h-[856px] brightness-75'"
+    :class="'w-full object-cover relative h-[999px] brightness-75'"
   />
 
   <div class="flex flex-col gap-4 absolute bottom-1/4 left-28 pl-30">
