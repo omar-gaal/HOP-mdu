@@ -8,6 +8,7 @@ import { useAuthStore } from '#imports';
 import laptop from "@/assets/img/laptop.webp";
 import iphone from "@/assets/img/iphone.webp";
 import playstationPro from "@/assets/img/ps5.webp";
+import OrderCard from '~/components/partial/OrderCard.vue';
 
 const auth = useAuthStore();
 
@@ -82,43 +83,11 @@ const sorteredeOrdrer = computed(() => {
       <div class="max-w-5xl mx-auto px-4">
         <h2 class="text-2xl font-semibold mb-6">Mine ordrer</h2>
 
-        <div
+        <OrderCard
           v-for="order in sorteredeOrdrer"
           :key="order.id"
-          class="border p-4 mb-6 rounded-lg shadow-sm"
-        >
-          <div class="flex flex-wrap md:flex-nowrap justify-between items-center gap-4">
-            <div>
-              <p class="text-sm uppercase">Status</p>
-              <p class="font-medium">{{ order.status }}</p>
-            </div>
-            <div>
-              <p class="text-sm uppercase">Bestillingsdato</p>
-              <p class="font-medium">{{ order.date }}</p>
-            </div>
-            <div class="flex items-center gap-4">
-              <img
-                :src="order.image"
-                :alt="order.productName"
-                class="w-20 h-20 object-contain"
-              />
-              <div>
-                <p class="text-sm uppercase">Produkt</p>
-                <p class="font-medium">{{ order.productName }}</p>
-              </div>
-            </div>
-            <div>
-              <p class="text-sm uppercase">Ordredetaljer</p>
-              <NuxtLink :to="order.fakturaLink" class="underline text-sm">
-                Faktura
-              </NuxtLink>
-            </div>
-            <div class="text-right">
-              <p class="text-sm">{{ order.varenr }}</p>
-              <p class="text-lg font-bold mt-2">{{ order.price }}</p>
-            </div>
-          </div>
-        </div>
+          :order="order"
+        />
 
         <div class="h-24"></div>
       </div>
