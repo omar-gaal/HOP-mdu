@@ -9,7 +9,9 @@ import laptop from "@/assets/img/laptop.webp";
 import iphone from "@/assets/img/iphone.webp";
 import playstationPro from "@/assets/img/ps5.webp";
 import OrderCard from '~/components/partial/OrderCard.vue';
+import { useUsername } from '#imports'
 
+const userName = useUsername()
 const auth = useAuthStore();
 
 async function logout() {
@@ -65,7 +67,7 @@ const sorteredeOrdrer = computed(() => {
 <template>
   <BaseContainer :is-mypage="true">
     <div class="flex justify-between py-8">
-      <h2 class="text-2xl">Hej {{ auth.user?.userName || 'Bruger' }}</h2>
+      <h2 class="text-2xl">Hej {{  userName || 'Bruger' }}</h2>
       <button @click="logout" class="text-2xl underline">Log ud</button>
     </div>
 
