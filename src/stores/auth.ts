@@ -131,10 +131,19 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+
     async logout() {
       try {
-        await $fetch('/api/auth/logout', { method: 'POST' });
-      } finally {
+        const response = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-out', {
+          method: 'POST',
+          credentials: 'include',
+        });
+    
+        return response
+      } catch (error) {
+        console.error('Proxy logout error:', error);
+        throw createError({ statusCode: 500, message: 'Proxy logout failed' })
+      }   finally {
         this.clearAuth();
         await navigateTo('/');
       }
@@ -145,11 +154,17 @@ export const useAuthStore = defineStore('auth', {
 
     async checkAuth() {
       try {
-        const response: CheckAuthResponse  = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/is-logged-in', {
+        const tokenCookie = useCookie('tokenCookie');
+        const response: CheckAuthResponse = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/is-logged-in', {
           method: 'GET',
           credentials: 'include',
+          headers: {
+            Authorization: `Bearer ${tokenCookie.value}`,
+          }
         });
-
+    
+        console.log(response);
+    
         this.setUser({
           id: response.key,
           email: response.email,
