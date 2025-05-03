@@ -11,9 +11,13 @@ interface Product {
   stock: string;
 }
 
-defineProps<{
+const props = defineProps<{
   products: Product[];
+  favorites: any; 
 }>();
+
+
+
 </script>
 
 <template>
@@ -36,6 +40,7 @@ defineProps<{
       v-for="product in products"
       :key="product.id"
       :product="product"
+      :favorites="props.favorites" 
     />
   </div>
 </template>
