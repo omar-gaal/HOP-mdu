@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useFavoritesStore } from '#imports';
+import { useAuthStore } from '#imports';
+import ProductList from './ProductList.vue';
+
 defineProps<{
   product: {
     id: number;
@@ -9,13 +13,31 @@ defineProps<{
     stock: string;
   }
 }>()
+const favFilled = new URL('../../assets/icon/fav-filled.png', import.meta.url).href;
+const favP = new URL('../../assets/icon/fav-p.webp', import.meta.url).href;
+
+const favorites = useFavoritesStore();
+const auth = useAuthStore();
+
+function handleFavoriteClick() {
+  if (!auth.isAuthenticated) {
+    alert("Du skal være logget ind for at tilføje favoritter.");
+    return;
+  }
+  favorites.toggleFavorite(product.id);
+}
 </script>
+:src="favorites.isFavorite(product.id) ? '../../assets/icon/fav-filled.png' : '../../assets/icon/fav-p.webp'"
 
 <template>
   <div class="bg-white w-80 rounded overflow-hidden shadow">
     <div class="relative bg-[#6B7280]">
       <img :src="product.image" alt="product image" class="w-full h-60 object-cover" />
-      <img src="../../assets/icon/fav-p.webp" alt="favorite" class="absolute top-3 right-3 w-6 h-6 cursor-pointer" />
+      <!-- Corrected cursor class and path to images -->
+      <img :src="favorites.isFavorite(product.id) ? favFilled : favP"
+           @click="handleFavoriteClick"
+           class="absolute top-3 right-3 w-6 h-6 cursor-pointer"
+           alt="favorite icon" />
     </div>
 
     <div class="p-4">
