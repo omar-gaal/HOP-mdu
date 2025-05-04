@@ -37,6 +37,7 @@ const props = defineProps<{
     class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 place-items-center"
   >
     <ProductCard
+      class="scale-100 hover:scale-105"
       v-for="product in products"
       :key="product.id"
       :product="product"
