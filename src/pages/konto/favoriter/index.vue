@@ -25,7 +25,7 @@ async function logout() {
 <template>
 <BaseContainer :is-mypage="true">
     
-  <div class="flex justify-between py-8 ">
+  <div class="flex justify-between py-8">
     <h2 class="text-2xl">Hej {{ userName || 'Bruger' }}</h2>
     <button @click="logout()" class=" cursor-pointer underline text-2xl">Log ud</button>
   </div>

@@ -73,14 +73,6 @@ const sorteredeOrdrer = computed(() => {
 
     <PartialAccountNavigation class="mb-10" />
 
-    <div class="flex justify-end mb-4">
-      <label class="mr-2 text-sm text-white">Sorter efter:</label>
-      <select v-model="sortering" class="bg-primary text-white">
-        <option value="nyeste">Nyeste først</option>
-        <option value="ældste">Ældste først</option>
-      </select>
-    </div>
-
     <section class="w-full py-6">
       <div class="max-w-5xl mx-auto px-4">
         <h2 class="text-2xl font-semibold mb-6 text-primary">Mine ordrer</h2>

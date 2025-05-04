@@ -12,6 +12,7 @@ const newPassword = ref('');
 const isLoading = ref(false);
 const successMessage= ref('');
 const errorMessage = ref('');
+const showDeletePopup = ref(false);
 
 
 const updatePassword = async () => {
@@ -49,7 +50,7 @@ const updatePassword = async () => {
     </div>
 
     <PartialAccountNavigation />
-    <section class="space-y-10 mt-10">
+    <section class="space-y-10 mt-10 mb-20">
       <!-- Profiloplysninger -->
       <div class="bg-primary text-white p-6 rounded-md">
         <h3 class="text-xl font-bold mb-4">Profildetaljer</h3>
@@ -131,7 +132,7 @@ const updatePassword = async () => {
             type="password"
             placeholder="Nuværende kodeord"
             v-model="currentPassword"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
 
           <label class="block text-sm mt-4">Nyt kodeord</label>
@@ -139,10 +140,10 @@ const updatePassword = async () => {
             type="password"
             placeholder="Nyt kodeord"
             v-model="newPassword"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
         </div>
-        <button @click="updatePassword" :disabled="isLoading" class="bg-secondary text-white px-4 py-2 rounded mt-6">
+        <button @click="updatePassword" :disabled="isLoading" class="bg-secondary text-primary px-4 py-2 rounded mt-6">
           {{ isLoading ? "Gemmer..." : "Gem ændringer" }}
         </button>
         <p class="text-green-400 mt-2" v-if="successMessage">{{ successMessage}}</p>
@@ -151,10 +152,25 @@ const updatePassword = async () => {
 
       <!-- Slet profil -->
       <div class="text-right">
-        <NuxtLink to="#" class="text-red-600 underline text-lg font-bold"
-          >Slet min profil</NuxtLink
-        >
+        <div>
+          <button
+            @click="showDeletePopup = true"
+            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            Slet min profil
+          </button>
+        </div>
       </div>
     </section>
+    <div v-if="showDeletePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full">
+        <h3 class="text-xl font-bold mb-4">Bekræft sletning</h3>
+        <p class="mb-6">Er du sikker på, at du vil slette din profil? Denne handling kan ikke fortrydes.</p>
+        <div class="flex justify-end gap-4">
+          <button @click="showDeletePopup = false" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">Annuller</button>
+          <button class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Slet profil</button>
+        </div>
+      </div>
+    </div>
   </BaseContainer>
 </template>
