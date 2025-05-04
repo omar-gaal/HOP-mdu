@@ -25,24 +25,24 @@ const userName = useUsername();
           <input
             type="text"
             value="Camilla"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
 
           <label class="block text-sm mt-4">Brugernavn</label>
           <input
             type="text"
             value="oog"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
 
           <label class="block text-sm mt-4">Email</label>
           <input
             type="email"
             value="omargaal123@gmail.com"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
         </div>
-        <button class="bg-secondary text-white px-4 py-2 rounded mt-6">
+        <button class="bg-secondary text-primary px-4 py-2 rounded mt-6">
           Gem ændringer
         </button>
       </div>
@@ -55,7 +55,7 @@ const userName = useUsername();
           <input
             type="text"
             value="Frydenlunds alle nr 35 1tv"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
 
           <div class="flex gap-4 mt-4">
@@ -64,7 +64,7 @@ const userName = useUsername();
               <input
                 type="text"
                 value="8210"
-                class="w-full bg-transparent border-b border-secondary outline-none"
+                class="w-full bg-transparent border-b border-white outline-none"
               />
             </div>
             <div class="w-1/2">
@@ -72,19 +72,19 @@ const userName = useUsername();
               <input
                 type="text"
                 value="Aarhus"
-                class="w-full bg-transparent border-b border-secondary outline-none"
+                class="w-full bg-transparent border-b border-white outline-none"
               />
             </div>
           </div>
 
           <label class="block text-sm mt-4">Telefonnummer</label>
           <select
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           >
             <option>Land</option>
           </select>
         </div>
-        <button class="bg-secondary text-white px-4 py-2 rounded mt-6">
+        <button class="bg-secondary text-primary px-4 py-2 rounded mt-6">
           Gem ændringer
         </button>
       </div>
@@ -97,24 +97,24 @@ const userName = useUsername();
           <input
             type="password"
             value="Omar123"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
 
           <label class="block text-sm mt-4">Ny Adgangskode</label>
           <input
             type="password"
             value="Omar1234"
-            class="w-full bg-transparent border-b border-secondary outline-none"
+            class="w-full bg-transparent border-b border-white outline-none"
           />
         </div>
-        <button class="bg-secondary text-white px-4 py-2 rounded mt-6">
+        <button class="bg-secondary text-primary px-4 py-2 rounded mt-6">
           Gem ændringer
         </button>
       </div>
 
       <!-- Slet profil -->
       <div class="text-right">
-        <NuxtLink to="#" class="text-red-600 underline text-lg"
+        <NuxtLink to="#" class="text-red-600 underline text-lg font-bold"
           >Slet min profil</NuxtLink
         >
       </div>
