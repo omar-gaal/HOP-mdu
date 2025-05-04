@@ -25,12 +25,12 @@ async function logout() {
 <template>
 <BaseContainer :is-mypage="true">
     
-  <div class="flex justify-between py-8 ">
+  <div class="flex justify-between py-8">
     <h2 class="text-2xl">Hej {{ userName || 'Bruger' }}</h2>
     <button @click="logout()" class=" cursor-pointer underline text-2xl">Log ud</button>
   </div>
 
-<PartialAccountNavigation class="mb-24"
+<PartialAccountNavigation class="mb-20"
 />
 
 <transition-group name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 place-items-center gap-6">

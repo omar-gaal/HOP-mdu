@@ -73,23 +73,17 @@ const sorteredeOrdrer = computed(() => {
 
     <PartialAccountNavigation class="mb-10" />
 
-    <div class="flex justify-end mb-4">
-      <label class="mr-2 text-sm text-gray-700">Sorter efter:</label>
-      <select v-model="sortering" class="border rounded px-2 py-1 text-sm">
-        <option value="nyeste">Nyeste først</option>
-        <option value="ældste">Ældste først</option>
-      </select>
-    </div>
-
-    <section class="bg-white w-full py-6">
+    <section class="w-full py-6">
       <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-2xl font-semibold mb-6">Mine ordrer</h2>
+        <h2 class="text-2xl font-semibold mb-6 text-primary">Mine ordrer</h2>
 
-        <OrderCard
+        <div
           v-for="order in sorteredeOrdrer"
           :key="order.id"
-          :order="order"
-        />
+          class="bg-primary text-white rounded-md p-4 mb-4 border"
+        >
+          <OrderCard :order="order" class="border border-primary" />
+        </div>
 
         <div class="h-24"></div>
       </div>
