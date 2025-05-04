@@ -6,6 +6,39 @@ definePageMeta({
 import { useUsername } from "#imports";
 
 const userName = useUsername();
+
+const currentPassword = ref('');
+const newPassword = ref('');
+const isLoading = ref(false);
+const successMessage= ref('');
+const errorMessage = ref('');
+
+
+const updatePassword = async () => {
+  isLoading.value = true;
+  successMessage.value = '';
+  errorMessage.value = '';
+
+  try {
+    await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/password', {
+      method: 'PATCH',
+      credentials: 'include',
+      body: {
+        currentPassword: currentPassword.value,
+        newPassword:newPassword.value,
+      },
+    });
+    successMessage.value = 'adgangskoden er opdateret!';
+    currentPassword.value = '';
+    newPassword.value = '';
+  } catch (error: any) {
+    errorMessage.value = error?.data?.message || 'noget gik galt...'    
+  } finally {
+    isLoading.value = false
+  }
+};
+
+
 </script>
 
 <template>
@@ -93,23 +126,27 @@ const userName = useUsername();
       <div class="bg-primary text-white p-6 rounded-md">
         <h3 class="text-xl font-bold mb-4">Ændrer Adgangskode</h3>
         <div class="space-y-2">
-          <label class="block text-sm">Gamle Adgangskode</label>
+          <label class="block text-sm">Skriv Gamle kodeord</label>
           <input
             type="password"
-            value="Omar123"
+            placeholder="Nuværende kodeord"
+            v-model="currentPassword"
             class="w-full bg-transparent border-b border-secondary outline-none"
           />
 
-          <label class="block text-sm mt-4">Ny Adgangskode</label>
+          <label class="block text-sm mt-4">Nyt kodeord</label>
           <input
             type="password"
-            value="Omar1234"
+            placeholder="Nyt kodeord"
+            v-model="newPassword"
             class="w-full bg-transparent border-b border-secondary outline-none"
           />
         </div>
-        <button class="bg-secondary text-white px-4 py-2 rounded mt-6">
-          Gem ændringer
+        <button @click="updatePassword" :disabled="isLoading" class="bg-secondary text-white px-4 py-2 rounded mt-6">
+          {{ isLoading ? "Gemmer..." : "Gem ændringer" }}
         </button>
+        <p class="text-green-400 mt-2" v-if="successMessage">{{ successMessage}}</p>
+        <p class="text-red-400 mt-2" v-if="errorMessage">{{ errorMessage }}</p>
       </div>
 
       <!-- Slet profil -->
