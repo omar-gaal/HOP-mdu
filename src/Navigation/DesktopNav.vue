@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
 import { useAuthStore } from '@/stores/auth';
-
+import { useFavoritesStore } from '#imports';
 const auth = useAuthStore();
+const favoriter = useFavoritesStore();
 
 const authCookie = useCookie('auth');
 
@@ -23,13 +24,20 @@ const authCookie = useCookie('auth');
       </nav>
 
 
-        <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+      <NuxtLink to="/konto/favoriter">
+        <div class="relative">
+          <span v-if="favoriter.count > 0" class="absolute bottom-5 text-2xl  text-secondary">{{ favoriter.count }}</span>
+          <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+        </div>
+      </NuxtLink>
+
         <BaseLoginBtn v-if="!auth.isAuthenticated" />
-      <NuxtLink to="/konto">
+      
+        <NuxtLink to="/konto">
         <BaseInitialIcon v-if="auth.isAuthenticated"
         :initials="auth.user?.userName?.slice(0, 2).toUpperCase()"
         />
-      </NuxtLink>
+        </NuxtLink>
 
 
     
