@@ -30,7 +30,7 @@ async function logout() {
     <button @click="logout()" class=" cursor-pointer underline text-2xl">Log ud</button>
   </div>
 
-<PartialAccountNavigation class="mb-24"
+<PartialAccountNavigation class="mb-20"
 />
 
 <transition-group name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 place-items-center gap-6">
