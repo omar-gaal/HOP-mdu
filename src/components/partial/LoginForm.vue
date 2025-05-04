@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, Transition } from 'vue';
 import { useModal } from "@/stores/modal";
 
 import { useAuthStore } from '@/stores/auth';
@@ -10,17 +10,21 @@ const authStore = useAuthStore();
 
 const userName = ref('')
 const password = ref('');
+const isLoading = ref(false);
 
 async function handleLogin() {
+  isLoading.value = true;
   const success = await authStore.login(userName.value, password.value);
   console.log("login attempt result:", success)
   if (success) {
     console.log("Login successful, user data:", authStore.user);
+    await new Promise(resolve => setTimeout(resolve, 500));
     modal.close();
   } else {
     console.warn(" Login failed");
     alert('Fejl ved login. Prøv igen.');
   }
+  isLoading.value = false;
 }
 
 
@@ -131,13 +135,25 @@ const showPassword = ref(false);
           </div>
           <button
             type="submit"
-            class="block mx-auto min-w-32 bg-[var(--color-secondary)] text-black font-semibold py-2 rounded hover:opacity-90 transition"
+            :disabled="isLoading"
+            class="block mx-auto min-w-32 bg-[var(--color-secondary)] text-black font-semibold py-2 rounded hover:opacity-90 transition flex items-center justify-center"
+            :class="{ 'opacity-50 cursor-not-allowed': isLoading }"
           >
-            Log ind
+            <Transition name="fade" mode="out-in">
+              <span :key="isLoading ? 'loading' : 'idle'" class="flex items-center">
+                <template v-if="isLoading">
+                  <div class="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Logger ind...
+                </template>
+                <template v-else>
+                  Log ind
+                </template>
+              </span>
+            </Transition>
           </button>
         </form>
 
-        <div class="mt-6 flex justify-between text-sm">
+        <div v-if="!isLoading" class="mt-6 flex justify-between text-sm">
           <a
             href="#"
             @click.prevent="modal.setForm('create')"
