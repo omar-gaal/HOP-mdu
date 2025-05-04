@@ -6,6 +6,7 @@ interface User {
   email: string;
   name: string;
   userName: string;
+  
 }
 
 interface Member {
@@ -28,7 +29,7 @@ interface CheckAuthResponse {
 }
 
 interface AuthState {
-  user: User | null;
+  user: User | null ;
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
@@ -41,42 +42,44 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: false,
     loading: true,
   }),
-
+  
   actions: {
-    // This method initializes the state from cookies when the app starts
-    init() {
-      const authUser = useCookie('authUser');  // Get user from cookie
-      const authToken = useCookie('auth');    // Get auth token from cookie
-
-      // Check if user and token exist
-      if (authUser.value && authToken.value) {
+    init(): Promise<void> {
+      return new Promise((resolve) => {
+        const authUser = useCookie('authUser');
+        const authToken = useCookie('auth');
+    
         try {
-          // Parse user data from the cookie and set the store
-          this.user = JSON.parse(authUser.value);
-          this.token = authToken.value;
-          this.isAuthenticated = true;
+          if (authUser.value) {
+            this.user = authUser.value as unknown as User;
+            this.isAuthenticated = true;
+          }
+    
+          if (authToken.value) {
+            this.token = authToken.value;
+          }
         } catch (error) {
-          console.error('Failed to parse user data from cookie', error);
-          this.clearAuth();  // Clear cookies in case of an error
+          console.error('Invalid cookie format', error);
+          this.clearAuth();
         }
-      } else {
-        this.clearAuth();
-      }
-      this.loading = false;
+    
+        this.loading = false;
+        resolve();
+      });
     },
 
-    // This method sets the user data in the store and saves it to the cookie
+   
     setUser(user: User) {
       this.user = user;
       this.isAuthenticated = true;
-      const authUser = useCookie('authUser');
+      const authUser = useCookie('authUser',{maxAge: 60 * 60 * 24 * 7});
       authUser.value = JSON.stringify(user);
     },
 
     // This method saves the token to the cookie
     setToken(token: string) {
       this.token = token;
-      const authToken = useCookie('auth');
+      const authToken = useCookie('auth', {maxAge: 60 * 60 * 24 * 7});
       authToken.value = token;
     },
 
