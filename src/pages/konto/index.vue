@@ -19,7 +19,7 @@ async function logout() {
 <BaseContainer :is-mypage="true">
   <div class="flex justify-between py-8 ">
     <h2 class="text-2xl">Hej {{userName || 'Bruger'}}</h2>
-    <button @click="logout" class="text-2xl underline" >Log out </button>
+    <button @click="logout" class="text-2xl underline" >Log ud </button>
   </div>
   <PartialAccountNavigation class="mb-24"/>
   <div class="flex flex-col gap-6  sm:flex-row sm:justify-between">
@@ -27,9 +27,19 @@ async function logout() {
        :title="'Mine detaljer'"
        :userName="userName"
        :email="auth.user?.email"
+       :text="'hej med dig'"
        linkText="Mine detaljer"
        linkUrl="/konto/profile"
     />
+    <BaseInfoCard
+   :title="'Mine detaljer'"
+   :adresse="'Frydenlund alle nr 35 1tv'"
+   :postNr="'8210'"
+   :by="'Aarhus'"
+   :land="'Denmark'"
+   linkText="Opdater adresse"
+   linkUrl="/konto/profile"
+/>
   </div>
 </BaseContainer>
 </template>
