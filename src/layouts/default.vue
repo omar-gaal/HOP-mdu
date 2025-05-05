@@ -14,8 +14,8 @@ const isMobile = computed(() => width.value < 768);
   <div class="min-h-screen flex flex-col">
 
     <!-- Navigation -->
-    <div>
-      <DesktopNav v-if="!isMobile" />
+    <div class="sticky top-0 z-50 bg-primary shadow-md">
+      <DesktopNav  v-if="!isMobile" />
       <MobileNav v-else />
     </div>
 
