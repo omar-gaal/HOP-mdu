@@ -1,7 +1,8 @@
 import { useAuthStore } from "#imports"
 export default defineNuxtRouteMiddleware(async(to, from) => {
   const auth = useAuthStore();
-
+  await auth.init();
+  
   if (auth.loading) {
     await new Promise(resolve => {
       const stop = watch(
