@@ -26,8 +26,9 @@ const authCookie = useCookie('auth');
 
       <NuxtLink to="/konto/favoriter">
         <div class="relative">
-          <span v-if="favoriter.count > 0" class="absolute bottom-5 text-2xl  text-secondary">{{ favoriter.count }}</span>
-          <img  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+          <img v-if="favoriter.count === 0"  src="../assets/icon/fav-w.png" alt="heart icon" class="w-6 h-6" />
+          <img  v-if="favoriter.count > 0" src="../assets/icon/fav-filled.png" alt="heart icon" class="w-6 h-6" />
+
         </div>
       </NuxtLink>
 
