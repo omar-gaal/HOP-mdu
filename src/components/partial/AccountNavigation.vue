@@ -39,7 +39,7 @@ const navigationName = ref<NavigationItem[]>([
         ></div>
 
       
-        <div class="md:hidden sm:w-3/4 w-full border-t border-white mt-2"></div>
+        <div class="md:hidden sm:w-3/4 w-full border-t border-secondary mt-2"></div>
       </NuxtLink>
     </ul>
   </div>
