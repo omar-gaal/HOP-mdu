@@ -19,21 +19,25 @@ const updatePassword = async () => {
   isLoading.value = true;
   successMessage.value = '';
   errorMessage.value = '';
-
+  const authToken = useCookie('auth');
   try {
     await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/password', {
       method: 'PATCH',
-      credentials: 'include',
+    
       body: {
         currentPassword: currentPassword.value,
         newPassword: newPassword.value,
       },
+      headers: {
+      Authorization: `Bearer ${authToken.value}`,
+     },
     });
     successMessage.value = 'Adgangskoden er opdateret!';
     currentPassword.value = '';
     newPassword.value = '';
   } catch (error: any) {
     errorMessage.value = error?.data?.message || error?.message || 'Noget gik galt...';
+    console.log('noget gik galt', error)
   } finally {
     isLoading.value = false;
   }
@@ -129,7 +133,7 @@ const updatePassword = async () => {
         <div class="space-y-2">
           <label class="block text-sm">Skriv Gamle kodeord</label>
           <input
-            type="password"
+            type="text"
             placeholder="Nuværende kodeord"
             v-model="currentPassword"
             class="w-full bg-transparent border-b border-white outline-none"
