@@ -4,6 +4,7 @@ definePageMeta({
 });
 
 import { useUsername } from "#imports";
+import { useRouter } from 'vue-router';
 
 const userName = useUsername();
 
@@ -14,6 +15,7 @@ const successMessage= ref('');
 const errorMessage = ref('');
 const showDeletePopup = ref(false);
 
+const router = useRouter();
 
 const updatePassword = async () => {
   isLoading.value = true;
@@ -43,7 +45,22 @@ const updatePassword = async () => {
   }
 };
 
+const deleteProfile = async () => {
+  try {
+    await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile', {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${useCookie('auth').value}`,
+      },
+    });
 
+    alert('Din konto er nu slettet');
+    router.push('/');
+  } catch (error) {
+    console.error('Fejl ved sletning af profil:', error);
+    alert('Noget gik galt. Prøv igen senere.');
+  }
+};
 </script>
 
 <template>
@@ -172,7 +189,7 @@ const updatePassword = async () => {
         <p class="mb-6">Er du sikker på, at du vil slette din profil? Denne handling kan ikke fortrydes.</p>
         <div class="flex justify-end gap-4">
           <button @click="showDeletePopup = false" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">Annuller</button>
-          <button class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Slet profil</button>
+          <button @click="deleteProfile" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Slet profil</button>
         </div>
       </div>
     </div>
