@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 
+
 // Define the types for the user and related data
 interface User {
   id: string;
@@ -155,6 +156,9 @@ export const useAuthStore = defineStore('auth', {
         throw createError({ statusCode: 500, message: 'Proxy logout failed' });
       } finally {
         this.clearAuth();
+  
+        const favoriter = useFavoritesStore();  
+        favoriter.clearFavorites();  
         await navigateTo('/');
       }
     },
