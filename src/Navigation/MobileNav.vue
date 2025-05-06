@@ -13,7 +13,7 @@ const isOpen = ref(false);
 
 
 const navItem = ref<NavigationItem[]>([
-  { navName: 'Produkter', href: '/' },
+  { navName: 'Produkter', href: '/produkter' },
   { navName: 'Services', href: '/page-not-found' },
   { navName: 'Om Os', href: '/page-not-found' },
   { navName: 'Min side', href:'/konto' },

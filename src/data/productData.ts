@@ -19,6 +19,7 @@ export interface ProductItem {
   productName: string;
   price: string;
   stock: string;
+  category: string;
 }
 
 
@@ -30,6 +31,7 @@ export const productData: ProductItem[] = [
     productName: "X5000 Pro Series",
     price: "3000,00 DKK",
     stock: "37 på lager",
+    category: "computer",
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ export const productData: ProductItem[] = [
     productName: "Iphone 12 Pro",
     price: "1500,00 DKK",
     stock: "2 på lager",
+    category: "mobil",
   },
   {
     id: 3,
@@ -46,6 +49,7 @@ export const productData: ProductItem[] = [
     productName: "Playstation 5 pro",
     price: "2500,00 DKK",
     stock: "20 på lager",
+    category: "playstation",
   },
   {
     id: 4,
@@ -54,14 +58,16 @@ export const productData: ProductItem[] = [
     productName: "El løbehjul",
     price: "2000,00 DKK",
     stock: "5 på lager",
+    category: "løbehjul",
   },
   {
     id: 5,
     image: microphone,
     varenr: "Varenr. 87765",
-    productName: "El løbehjul",
+    productName: "microphone",
     price: "2000,00 DKK",
     stock: "5 på lager",
+    category: "microphone",
   },
   {
     id: 6,
@@ -70,6 +76,7 @@ export const productData: ProductItem[] = [
     productName: "Canon Eos 90D",
     price: "999,00 DKK",
     stock: "12 på lager",
+    category: "kamera",
   },
   {
     id: 7,
@@ -78,6 +85,7 @@ export const productData: ProductItem[] = [
     productName: "Marshall",
     price: "800,00 DKK",
     stock: "15 på lager",
+    category: "hojtaler",
   },
   {
     id: 8,
@@ -86,6 +94,7 @@ export const productData: ProductItem[] = [
     productName: "Nikon D7500",
     price: "15000,00 DKK",
     stock: "5 på lager",
+    category: "kamera",
   },
   {
     id: 9,
@@ -94,5 +103,6 @@ export const productData: ProductItem[] = [
     productName: "Nikon D7500",
     price: "15000,00 DKK",
     stock: "5 på lager",
+    category: "horeboffer",
   },
 ];
