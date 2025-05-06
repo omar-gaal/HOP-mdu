@@ -109,21 +109,7 @@ async function handleSubmit() {
        placeholder="Vælg et brugernavn"
       />
         </div>
-
-      <div>
-        <label for="password" class="block text-sm font-medium mb-1"
-          >Adgangskode</label
-
-        >
-        <input
-          id="brugernavn"
-          v-model="brugernavn"
-          type="brugernavn"
-          class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
-          placeholder="Indtast brugernavn"
-        />
-      </div>
-
+        
       <div class="relative">
         <label for="password" class="block text-sm font-medium mb-1">Adgangskode</label>
         <input

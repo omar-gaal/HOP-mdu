@@ -1,18 +1,22 @@
 <script setup lang="ts">
-definePageMeta({    
-    middleware: 'protected',
+definePageMeta({
+  middleware: "protected",
 });
 
-import BaseInfoCard from '@/components/base/BaseInfoCard.vue'
-import { useAuthStore } from '#imports';
-import { useUsername } from '#imports';
+// Imports
+import BaseInfoCard from "@/components/base/BaseInfoCard.vue";
+import { useAuthStore, useUsername } from "#imports";
+import { useProfileStore } from "@/stores/useProfileStore";
 
-const userName = useUsername();
+// Stores
 const auth = useAuthStore();
+const profileStore = useProfileStore();
+const userName = useUsername();
 
-async function logout() {
+// Logout handler
+const logout = async () => {
   await auth.logout();
-}
+};
 </script>
 
 <template>
@@ -32,13 +36,15 @@ async function logout() {
        linkUrl="/konto/profile"
     />
     <BaseInfoCard
-   :title="'Mine detaljer'"
-   :adresse="'Frydenlund alle nr 35 1tv'"
-   :postNr="'8210'"
-   :by="'Aarhus'"
-   :land="'Denmark'"
-   linkText="Opdater adresse"
-   linkUrl="/konto/profile"
+  title="Mine oplysninger"
+  :userName="profileStore.name"
+  :email="profileStore.email"
+  :adresse="profileStore.adresse"
+  :postNr="profileStore.postNr"
+  :by="profileStore.by"
+  :land="profileStore.land"
+  linkText="Rediger"
+  linkUrl="/profile"
 />
   </div>
 </BaseContainer>
