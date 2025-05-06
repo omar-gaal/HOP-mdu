@@ -26,7 +26,7 @@ const logout = async () => {
     <button @click="logout" class="text-2xl underline" >Log ud </button>
   </div>
   <PartialAccountNavigation class="mb-24"/>
-  <div class="flex flex-col gap-6  sm:flex-row sm:justify-between">
+  <div class="flex flex-col gap-6 text-white sm:flex-row sm:justify-between">
     <BaseInfoCard
        :title="'Mine detaljer'"
        :userName="userName"
