@@ -18,7 +18,7 @@ const authCookie = useCookie('auth');
     </NuxtLink>
     <div class="flex items-center gap-6">
       <nav class="text-white text-lg flex gap-4">
-  <NuxtLink to="/" class="text-[25px]">Produkter</NuxtLink>
+  <NuxtLink to="/produkter" class="text-[25px]">Produkter</NuxtLink>
 <NuxtLink to="/page-not-found" class="text-[25px]">Services</NuxtLink>
 <NuxtLink to="/page-not-found" class="text-[25px]">Om os</NuxtLink>
       </nav>
