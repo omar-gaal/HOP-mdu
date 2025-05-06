@@ -5,7 +5,11 @@ definePageMeta({
 
 // Imports
 import { useUsername } from "#imports";
+
 import { useProfileStore } from "@/stores/useProfileStore";
+
+import { useRouter } from 'vue-router';
+
 
 // Stores
 const userName = useUsername();
@@ -25,6 +29,7 @@ const errorMessage = ref("");
 // State: Delete Popup
 const showDeletePopup = ref(false);
 
+
 // Load profile from localStorage on mount
 onMounted(() => {
   profileStore.loadFromLocalStorage();
@@ -36,6 +41,9 @@ const saveProfile = () => {
   profileSaveMessage.value = "";
 
   profileStore.saveToLocalStorage();
+
+const router = useRouter();
+
 
   setTimeout(() => {
     profileIsSaving.value = false;
@@ -76,6 +84,25 @@ const updatePassword = async () => {
     isLoading.value = false;
   }
 };
+
+
+const deleteProfile = async () => {
+  try {
+    await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile', {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${useCookie('auth').value}`,
+      },
+    });
+
+    alert('Din konto er nu slettet');
+    router.push('/');
+  } catch (error) {
+    console.error('Fejl ved sletning af profil:', error);
+    alert('Noget gik galt. Prøv igen senere.');
+  }
+};
+
 </script>
 
 
@@ -217,6 +244,7 @@ const updatePassword = async () => {
         <h3 class="text-xl font-bold mb-4">Bekræft sletning</h3>
         <p class="mb-6">Er du sikker på, at du vil slette din profil? Denne handling kan ikke fortrydes.</p>
         <div class="flex justify-end gap-4">
+
           <button
             @click="showDeletePopup = false"
             class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
@@ -226,6 +254,10 @@ const updatePassword = async () => {
           <button class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">
             Slet profil
           </button>
+
+          <button @click="showDeletePopup = false" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">Annuller</button>
+          <button @click="deleteProfile" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Slet profil</button>
+
         </div>
       </div>
     </div>

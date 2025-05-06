@@ -1,7 +1,18 @@
 <script setup lang="ts">
 import { useModal } from "@/stores/modal";
-import ForgotPasswordForm from "@/components/partial/ForgotPasswordForm.vue";
+import { ref } from 'vue';
 const modal = useModal();
+
+const email = ref('');
+const isSubmitted = ref(false);
+
+const handleSubmit = (e: Event) => {
+  e.preventDefault();
+  if (email.value) {
+    // Her kan du indsætte API-kaldet hvis nødvendigt
+    isSubmitted.value = true;
+  }
+};
 </script>
 
 <template>
@@ -22,7 +33,7 @@ const modal = useModal();
 
       <h2 class="text-xl font-semibold mb-6">Glemt adgangskode</h2>
 
-      <form class="space-y-4">
+      <form class="space-y-4" @submit="handleSubmit">
         <div>
           <label for="email" class="block text-sm font-medium mb-1">
             Indtast din e-mail
@@ -30,8 +41,10 @@ const modal = useModal();
           <input
             id="email"
             type="email"
+            v-model="email"
             class="w-full px-4 py-2 rounded border border-gray-300 bg-transparent text-white placeholder-gray-400"
             placeholder="Din mailadresse"
+            required
           />
         </div>
 
@@ -41,6 +54,9 @@ const modal = useModal();
         >
           Send 
         </button>
+        <p v-if="isSubmitted" class="text-green-300 text-center pt-4">
+          Hvis du har en registreret konto, sender vi et link til nulstilling af din adgangskode.
+        </p>
       </form>
     </div>
   </div>
