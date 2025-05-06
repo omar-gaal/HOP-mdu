@@ -18,10 +18,10 @@ function scrollToProducts() {
     alt="Hero background"
     :width="1280"
     :height="854"
-    :class="'w-full object-cover relative h-[999px] brightness-75'"
+    :class="'w-full object-cover relative h-[770px]  sm:h-[999px] brightness-75'"
   />
 
-  <div class="flex flex-col gap-4 absolute bottom-1/4 left-28 pl-30">
+  <div class="flex flex-col gap-4 absolute bottom-20 left-10 pl-30">
     <h1 class="text-4xl text-white">Professionel elektronik</h1>
     <span class="text-2xl text-white">direkte til din forretning</span>
 
