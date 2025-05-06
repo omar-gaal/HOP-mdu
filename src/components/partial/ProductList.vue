@@ -30,8 +30,9 @@ const filteredProducts = computed(() => {
 </script>
 
 <template>
-  <h1 id="productSection" class="text-5xl text-black flex flex-col gap-4 left-25 pl-20 w-full mb-10 mt-5">Alle produkter</h1>
-   <div class="flex flex-wrap left-25 pl-20 gap-6 mb-8 text-black text-lg">
+  
+  <h1 id="productSection" class="text-5xl text-black flex flex-col  gap-4 left-25 sm:pl-20 pl-4 w-full mb-10 mt-5">Alle produkter</h1>
+   <div class="flex flex-wrap left-25 sm:pl-20 pl-4 gap-6 mb-8 text-black text-lg">
     <span @click="selectedCategory = 'Alle produkter'" class="underline cursor-pointer">Alle produkter</span>
     <span @click="selectedCategory = 'computer'" class="underline cursor-pointer">Computer</span>
     <span @click="selectedCategory = 'mobil'" class="underline cursor-pointer">Mobil</span>

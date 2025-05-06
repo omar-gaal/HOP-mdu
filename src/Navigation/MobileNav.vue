@@ -15,9 +15,9 @@ const isOpen = ref(false);
 const navItem = ref<NavigationItem[]>([
   { navName: 'Produkter', href: '/produkter' },
   { navName: 'Services', href: '/page-not-found' },
-  { navName: 'Om Os', href: '/page-not-found' },
+  { navName: 'Om os', href: '/page-not-found' },
   { navName: 'Min side', href:'/konto' },
-  { navName: 'Log in', href: '/' },
+  { navName: 'Log ind', href: '/' },
 ]);
 </script>
 
@@ -25,7 +25,7 @@ const navItem = ref<NavigationItem[]>([
   <!-- Mobile Header -->
   <header v-if="!isOpen" class="flex bg-primary h-20 justify-between items-center px-4">
     <NuxtLink to="/">
-    <img src="../assets/icon/logo.webp" alt="Logo" class=" w-1/2 h-full" />
+    <img src="../assets/icon/logo.webp" alt="Logo" class=" w-32 h-full" />
     </NuxtLink>
     <nav class="flex items-center gap-6">
       <NuxtLink to="/">
