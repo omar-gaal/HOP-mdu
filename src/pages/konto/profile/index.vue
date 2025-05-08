@@ -19,7 +19,7 @@ const auth = useAuthStore();
 
 const profileIsSaving = ref(false);
 const profileSaveMessage = ref("");
-
+const router = useRouter();
 
 const currentPassword = ref("");
 const newPassword = ref("");
@@ -42,9 +42,6 @@ const saveProfile = () => {
   profileSaveMessage.value = "";
 
   profileStore.saveToLocalStorage();
-
-const router = useRouter();
-
 
   setTimeout(() => {
     profileIsSaving.value = false;
