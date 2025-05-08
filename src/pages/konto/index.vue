@@ -36,13 +36,13 @@ const logout = async () => {
         linkUrl="/konto/profile"
       />
       <BaseInfoCard
-        title="Mine oplysninger"
+        title="Adresse"
         :adresse="profileStore.adresse"
         :postNr="profileStore.postNr"
         :by="profileStore.by"
         :land="profileStore.land"
         linkText="Rediger"
-        linkUrl="/profile"
+        linkUrl="/konto/profile"
       />
     </div>
   </BaseContainer>
