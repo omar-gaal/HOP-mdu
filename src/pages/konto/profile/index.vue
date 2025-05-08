@@ -17,6 +17,17 @@ const profileIsSaving = ref(false);
 const profileSaveMessage = ref("");
 const router = useRouter();
 
+
+// const profileIsSaving = ref(false);
+// const profileSaveMessage = ref("");
+const profileDetailsSaving = ref(false);
+const profileDetailsMessage = ref("");
+const addressSaving = ref(false);
+const addressMessage = ref("");
+
+
+const router = useRouter();
+
 const currentPassword = ref("");
 const newPassword = ref("");
 const isLoading = ref(false);
@@ -29,20 +40,44 @@ onMounted(() => {
   profileStore.loadFromLocalStorage();
 });
 
+
 const saveProfile = () => {
   profileIsSaving.value = true;
   profileSaveMessage.value = "";
 
+
+const saveProfileDetails = async () => {
+  profileDetailsSaving.value = true;
+  profileDetailsMessage.value = "";
+
+
+  profileStore.saveToLocalStorage();
+  
+  setTimeout(() => {
+    profileDetailsSaving.value = false;
+    profileDetailsMessage.value = "Dine ændringer er gemt!";
+    setTimeout(() => {
+      profileDetailsMessage.value =""
+    }, 3000);
+  }, 1000);
+}
+
+
+const saveAddressDetails = async () => {
+  addressSaving.value = true;
+  addressMessage.value = ""
+
   profileStore.saveToLocalStorage();
 
   setTimeout(() => {
-    profileIsSaving.value = false;
-    profileSaveMessage.value = "Dine ændringer er gemt!";
+    addressSaving.value = false;
+    addressMessage.value = "Dine ændringer er gemt!";
     setTimeout(() => {
-      profileSaveMessage.value = "";
+      addressMessage.value = "";
     }, 3000);
   }, 1000);
-};
+}
+
 
 const updatePassword = async () => {
   isLoading.value = true;
@@ -128,11 +163,12 @@ async function logout() {
           />
         </div>
         <button
-          @click="saveProfile"
-          class="bg-secondary text-primary px-4 py-2 rounded mt-6"
-        >
-          Gem ændringer
+          @click="saveProfileDetails"
+          :disabled="profileDetailsSaving"
+           class="bg-secondary text-primary px-4 py-2 rounded mt-6"
+          >{{ profileDetailsSaving ? "Gemmer..." : "Gem ændringer" }}
         </button>
+        <p class="text-green-400 mt-2" v-if="profileDetailsMessage">{{ profileDetailsMessage }}</p>
       </div>
 
       <!-- Adresseoplysninger -->
@@ -173,6 +209,7 @@ async function logout() {
           />
         </div>
         <button
+
           @click="saveProfile"
           :disabled="profileIsSaving"
           class="bg-secondary text-primary px-4 py-2 rounded mt-6"
@@ -182,6 +219,14 @@ async function logout() {
         <p class="text-green-400 mt-2" v-if="profileSaveMessage">
           {{ profileSaveMessage }}
         </p>
+
+          @click="saveAddressDetails"
+          :disabled="addressSaving"
+           class="bg-secondary text-primary px-4 py-2 rounded mt-6"
+          >{{ addressSaving ? "Gemmer..." : "Gem ændringer" }}
+        </button>
+          <p class="text-green-400 mt-2" v-if="addressMessage">{{ addressMessage }}</p>
+
       </div>
 
       <!-- Ændring af adgangskode -->

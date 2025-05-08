@@ -56,7 +56,7 @@ async function handleSubmit() {
 <template>
   <div
     v-if="modal.activeForm === 'create'"
-    class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+    class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-2"
     @click.self="modal.close"
   >
     <div

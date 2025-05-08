@@ -1,14 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAuthStore } from '#imports';
+import { useModal } from "@/stores/modal";
+
+
+
+const isOpen = ref(false);
 
 const auth = useAuthStore();
+const modal = useModal();
+
+
 interface NavigationItem {
   navName: string;
   href: string;
+ 
+
 }
 
-const isOpen = ref(false);
 
 
 
@@ -16,9 +25,15 @@ const navItem = ref<NavigationItem[]>([
   { navName: 'Produkter', href: '/produkter' },
   { navName: 'Services', href: '/page-not-found' },
   { navName: 'Om os', href: '/page-not-found' },
-  { navName: 'Min side', href:'/konto' },
-  { navName: 'Log ind', href: '/' },
+  { navName: 'Min side', href: '/konto' },
 ]);
+
+
+const logout = async () => {
+  isOpen.value = false;
+  await auth.logout();
+}
+
 </script>
 
 <template>
@@ -64,8 +79,9 @@ const navItem = ref<NavigationItem[]>([
         </button>
       </div>
     </header>
-      <ul class="flex flex-col items-center gap-11 py-32">
-    <li v-for="(item, index) in navItem" :key="index">
+    <ul class="flex flex-col items-center gap-11 py-32">
+  
+  <li v-for="(item, index) in navItem" :key="index">
     <NuxtLink
       :to="item.href"
       class="text-white text-2xl text-center block"
@@ -74,6 +90,28 @@ const navItem = ref<NavigationItem[]>([
       {{ item.navName }}
       <hr class="w-80 border-t-2 border-secondary mt-2" />
     </NuxtLink>
+  </li>
+
+ 
+  <li v-if="!auth.isAuthenticated">
+    <button
+      class="text-white text-2xl text-center block"
+      @click="modal.open('login'); isOpen = false"
+    >
+      Log ind
+      <hr class="w-80 border-t-2 border-secondary mt-2" />
+    </button>
+  </li>
+
+
+  <li v-else>
+    <button
+      class="text-white text-2xl text-center block"
+      @click="logout"
+    >
+      Log ud
+      <hr class="w-80 border-t-2 border-secondary mt-2" />
+    </button>
   </li>
 </ul>
   </nav>
