@@ -96,7 +96,7 @@ const deleteProfile = async () => {
   showDeletePopup.value = false;
   await nextTick();
   setTimeout(async () => {
-    alert("Din konto vil blive slettet indenfor 24 timer.");
+    alert("Din konto vil nu blive slettet af en Admin indenfor 24 timer.");
     await auth.logout();
     router.push("/");
     isLoading.value = false;
