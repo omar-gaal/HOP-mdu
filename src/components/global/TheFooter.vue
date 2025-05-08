@@ -28,10 +28,10 @@ const footerLinks = [
 <template>
   <footer class="bg-primary text-white py-10 px-6">
     <div
-      class="max-w-screen-xl mx-auto flex flex-col md:flex-row md:justify-between gap-10"
+      class="max-w-screen-xl  mx-auto flex flex-col lg:flex-row md:justify-between max-lg:place-items-center gap-14"
     >
       <div
-        class="flex flex-col items-center md:items-start text-center md:text-left gap-3"
+        class="flex flex-col items-center  md:items-start text-center md:text-left gap-5"
       >
         <img src="../../assets/icon/logo.webp" alt="logo" class="w-36" />
         <span class="text-sm text-gray-300">©2025 company A/S</span>
@@ -41,11 +41,11 @@ const footerLinks = [
         <a href="/" class="underline text-sm hover:opacity-80">Privatpolitik</a>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-64 text-center md:text-left">
-        <div v-for="section in footerLinks" :key="section.title">
+      <div class="flex flex-col lg:flex-row gap-44 text-center text-2xl md:text-left">
+        <div  v-for="section in footerLinks" :key="section.title">
           <h3 class="font-semibold mb-2">{{ section.title }}</h3>
-          <ul class="space-y-1 text-sm text-gray-300">
-            <li v-for="link in section.links" :key="link">{{ link }}</li>
+          <ul class="space-y-1 text-base text-gray-300">
+            <li class="p-3 lg:p-1" v-for="link in section.links" :key="link">{{ link }}</li>
           </ul>
         </div>
       </div>
