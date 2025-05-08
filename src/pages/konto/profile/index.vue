@@ -260,9 +260,6 @@ async function logout() {
             Slet profil
           </button>
 
-          <button @click="showDeletePopup = false" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">Annuller</button>
-          <button @click="deleteProfile" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Slet profil</button>
-
         </div>
       </div>
     </div>
