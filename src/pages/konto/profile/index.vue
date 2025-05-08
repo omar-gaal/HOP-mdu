@@ -3,18 +3,19 @@ definePageMeta({
   middleware: "protected",
 });
 
-
 import { useUsername } from "#imports";
 
 import { useProfileStore } from "@/stores/useProfileStore";
 
-import { useRouter } from 'vue-router';
-
-
+import { useRouter } from "vue-router";
 
 const userName = useUsername();
 const profileStore = useProfileStore();
 const auth = useAuthStore();
+
+const profileIsSaving = ref(false);
+const profileSaveMessage = ref("");
+const router = useRouter();
 
 
 // const profileIsSaving = ref(false);
@@ -33,19 +34,22 @@ const isLoading = ref(false);
 const successMessage = ref("");
 const errorMessage = ref("");
 
-
 const showDeletePopup = ref(false);
-
-
 
 onMounted(() => {
   profileStore.loadFromLocalStorage();
 });
 
 
+const saveProfile = () => {
+  profileIsSaving.value = true;
+  profileSaveMessage.value = "";
+
+
 const saveProfileDetails = async () => {
   profileDetailsSaving.value = true;
   profileDetailsMessage.value = "";
+
 
   profileStore.saveToLocalStorage();
   
@@ -58,11 +62,13 @@ const saveProfileDetails = async () => {
   }, 1000);
 }
 
+
 const saveAddressDetails = async () => {
   addressSaving.value = true;
   addressMessage.value = ""
 
   profileStore.saveToLocalStorage();
+
   setTimeout(() => {
     addressSaving.value = false;
     addressMessage.value = "Dine ændringer er gemt!";
@@ -73,7 +79,6 @@ const saveAddressDetails = async () => {
 }
 
 
-
 const updatePassword = async () => {
   isLoading.value = true;
   successMessage.value = "";
@@ -82,52 +87,45 @@ const updatePassword = async () => {
   const authToken = useCookie("auth");
 
   try {
-    await $fetch("https://app-cshf-umbraco.azurewebsites.net/api/member-profile/password", {
-      method: "PATCH",
-      body: {
-        currentPassword: currentPassword.value,
-        newPassword: newPassword.value,
-      },
-      headers: {
-        Authorization: `Bearer ${authToken.value}`,
-      },
-    });
+    await $fetch(
+      "https://app-cshf-umbraco.azurewebsites.net/api/member-profile/password",
+      {
+        method: "PATCH",
+        body: {
+          currentPassword: currentPassword.value,
+          newPassword: newPassword.value,
+        },
+        headers: {
+          Authorization: `Bearer ${authToken.value}`,
+        },
+      }
+    );
 
     successMessage.value = "Adgangskoden er opdateret!";
     currentPassword.value = "";
     newPassword.value = "";
   } catch (error: any) {
-    errorMessage.value = error?.data?.message || error?.message || "Noget gik galt...";
+    errorMessage.value =
+      error?.data?.message || error?.message || "Noget gik galt...";
     console.error("Fejl under opdatering af adgangskode:", error);
   } finally {
     isLoading.value = false;
   }
 };
 
-
 const deleteProfile = async () => {
-  try {
-    await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile', {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${useCookie('auth').value}`,
-      },
-    });
-
-    alert('Din konto er nu slettet');
-    router.push('/');
-  } catch (error) {
-    console.error('Fejl ved sletning af profil:', error);
-    alert('Noget gik galt. Prøv igen senere.');
-  }
+  isLoading.value = true;
+  alert("Din konto vil nu blive slettet af en admin indenfor 24 timer.");
+  showDeletePopup.value = false;
+  await auth.logout();
+  router.push("/");
+  isLoading.value = false;
 };
 
 async function logout() {
   await auth.logout();
 }
-
 </script>
-
 
 <template>
   <BaseContainer :is-mypage="true">
@@ -211,12 +209,24 @@ async function logout() {
           />
         </div>
         <button
+
+          @click="saveProfile"
+          :disabled="profileIsSaving"
+          class="bg-secondary text-primary px-4 py-2 rounded mt-6"
+        >
+          {{ profileIsSaving ? "Gemmer..." : "Gem ændringer" }}
+        </button>
+        <p class="text-green-400 mt-2" v-if="profileSaveMessage">
+          {{ profileSaveMessage }}
+        </p>
+
           @click="saveAddressDetails"
           :disabled="addressSaving"
            class="bg-secondary text-primary px-4 py-2 rounded mt-6"
           >{{ addressSaving ? "Gemmer..." : "Gem ændringer" }}
         </button>
           <p class="text-green-400 mt-2" v-if="addressMessage">{{ addressMessage }}</p>
+
       </div>
 
       <!-- Ændring af adgangskode -->
@@ -246,7 +256,9 @@ async function logout() {
         >
           {{ isLoading ? "Gemmer..." : "Gem ændringer" }}
         </button>
-        <p class="text-green-400 mt-2" v-if="successMessage">{{ successMessage }}</p>
+        <p class="text-green-400 mt-2" v-if="successMessage">
+          {{ successMessage }}
+        </p>
         <p class="text-red-400 mt-2" v-if="errorMessage">{{ errorMessage }}</p>
       </div>
 
@@ -262,22 +274,31 @@ async function logout() {
     </section>
 
     <!-- Popup modal -->
-    <div v-if="showDeletePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div
+      v-if="showDeletePopup"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
       <div class="bg-white rounded-lg p-6 max-w-md w-full">
         <h3 class="text-xl font-bold mb-4">Bekræft sletning</h3>
-        <p class="mb-6">Er du sikker på, at du vil slette din profil? Denne handling kan ikke fortrydes.</p>
+        <p class="mb-6">
+          Er du sikker på, at du vil slette din profil? Denne handling kan ikke
+          fortrydes.
+        </p>
         <div class="flex justify-end gap-4">
-
           <button
             @click="showDeletePopup = false"
             class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
           >
             Annuller
           </button>
-          <button class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">
-            Slet profil
+          
+          <button
+            @click="deleteProfile"
+            :disabled="isLoading"
+            class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700"
+          >
+            {{ isLoading ? "Sletter..." : "Slet profil" }}
           </button>
-
         </div>
       </div>
     </div>
