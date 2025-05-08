@@ -3,7 +3,7 @@ definePageMeta({
   middleware: "protected",
 });
 
-// Imports
+
 import { useUsername } from "#imports";
 
 import { useProfileStore } from "@/stores/useProfileStore";
@@ -11,31 +11,32 @@ import { useProfileStore } from "@/stores/useProfileStore";
 import { useRouter } from 'vue-router';
 
 
-// Stores
+
 const userName = useUsername();
 const profileStore = useProfileStore();
+const auth = useAuthStore();
 
-// State: Profile Info Saving
+
 const profileIsSaving = ref(false);
 const profileSaveMessage = ref("");
 
-// State: Password Update
+
 const currentPassword = ref("");
 const newPassword = ref("");
 const isLoading = ref(false);
 const successMessage = ref("");
 const errorMessage = ref("");
 
-// State: Delete Popup
+
 const showDeletePopup = ref(false);
 
 
-// Load profile from localStorage on mount
+
 onMounted(() => {
   profileStore.loadFromLocalStorage();
 });
 
-// Save profile to localStorage with confirmation
+
 const saveProfile = () => {
   profileIsSaving.value = true;
   profileSaveMessage.value = "";
@@ -54,7 +55,7 @@ const router = useRouter();
   }, 1000);
 };
 
-// Update password via API
+
 const updatePassword = async () => {
   isLoading.value = true;
   successMessage.value = "";
@@ -103,6 +104,10 @@ const deleteProfile = async () => {
   }
 };
 
+async function logout() {
+  await auth.logout();
+}
+
 </script>
 
 
@@ -110,7 +115,7 @@ const deleteProfile = async () => {
   <BaseContainer :is-mypage="true">
     <div class="flex justify-between py-8">
       <h2 class="text-2xl">Hej {{ userName || "Bruger" }}</h2>
-      <h2 class="underline text-2xl">Log ud</h2>
+      <button @click="logout()" class="underline text-2xl">Log ud</button>
     </div>
 
     <PartialAccountNavigation />
