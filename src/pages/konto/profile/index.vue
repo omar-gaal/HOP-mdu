@@ -4,27 +4,18 @@ definePageMeta({
 });
 
 import { useUsername } from "#imports";
-
 import { useProfileStore } from "@/stores/useProfileStore";
-
 import { useRouter } from "vue-router";
+import { nextTick } from "vue";
 
 const userName = useUsername();
 const profileStore = useProfileStore();
 const auth = useAuthStore();
 
-const profileIsSaving = ref(false);
-const profileSaveMessage = ref("");
-const router = useRouter();
-
-
-// const profileIsSaving = ref(false);
-// const profileSaveMessage = ref("");
 const profileDetailsSaving = ref(false);
 const profileDetailsMessage = ref("");
 const addressSaving = ref(false);
 const addressMessage = ref("");
-
 
 const router = useRouter();
 
@@ -40,32 +31,24 @@ onMounted(() => {
   profileStore.loadFromLocalStorage();
 });
 
-
-const saveProfile = () => {
-  profileIsSaving.value = true;
-  profileSaveMessage.value = "";
-
-
 const saveProfileDetails = async () => {
   profileDetailsSaving.value = true;
   profileDetailsMessage.value = "";
 
-
   profileStore.saveToLocalStorage();
-  
+
   setTimeout(() => {
     profileDetailsSaving.value = false;
     profileDetailsMessage.value = "Dine ændringer er gemt!";
     setTimeout(() => {
-      profileDetailsMessage.value =""
+      profileDetailsMessage.value = "";
     }, 3000);
   }, 1000);
-}
-
+};
 
 const saveAddressDetails = async () => {
   addressSaving.value = true;
-  addressMessage.value = ""
+  addressMessage.value = "";
 
   profileStore.saveToLocalStorage();
 
@@ -76,8 +59,7 @@ const saveAddressDetails = async () => {
       addressMessage.value = "";
     }, 3000);
   }, 1000);
-}
-
+};
 
 const updatePassword = async () => {
   isLoading.value = true;
@@ -87,26 +69,22 @@ const updatePassword = async () => {
   const authToken = useCookie("auth");
 
   try {
-    await $fetch(
-      "https://app-cshf-umbraco.azurewebsites.net/api/member-profile/password",
-      {
-        method: "PATCH",
-        body: {
-          currentPassword: currentPassword.value,
-          newPassword: newPassword.value,
-        },
-        headers: {
-          Authorization: `Bearer ${authToken.value}`,
-        },
-      }
-    );
+    await $fetch("https://app-cshf-umbraco.azurewebsites.net/api/member-profile/password", {
+      method: "PATCH",
+      body: {
+        currentPassword: currentPassword.value,
+        newPassword: newPassword.value,
+      },
+      headers: {
+        Authorization: `Bearer ${authToken.value}`,
+      },
+    });
 
     successMessage.value = "Adgangskoden er opdateret!";
     currentPassword.value = "";
     newPassword.value = "";
   } catch (error: any) {
-    errorMessage.value =
-      error?.data?.message || error?.message || "Noget gik galt...";
+    errorMessage.value = error?.data?.message || error?.message || "Noget gik galt...";
     console.error("Fejl under opdatering af adgangskode:", error);
   } finally {
     isLoading.value = false;
@@ -115,11 +93,14 @@ const updatePassword = async () => {
 
 const deleteProfile = async () => {
   isLoading.value = true;
-  alert("Din konto vil nu blive slettet af en admin indenfor 24 timer.");
   showDeletePopup.value = false;
-  await auth.logout();
-  router.push("/");
-  isLoading.value = false;
+  await nextTick();
+  setTimeout(async () => {
+    alert("Din konto vil blive slettet indenfor 24 timer.");
+    await auth.logout();
+    router.push("/");
+    isLoading.value = false;
+  }, 100);
 };
 
 async function logout() {
@@ -147,14 +128,12 @@ async function logout() {
             v-model="profileStore.name"
             class="w-full bg-transparent border-b border-white outline-none"
           />
-
           <label class="block text-sm mt-4">Brugernavn</label>
           <input
             type="text"
             v-model="profileStore.username"
             class="w-full bg-transparent border-b border-white outline-none"
           />
-
           <label class="block text-sm mt-4">Email</label>
           <input
             type="email"
@@ -165,10 +144,13 @@ async function logout() {
         <button
           @click="saveProfileDetails"
           :disabled="profileDetailsSaving"
-           class="bg-secondary text-primary px-4 py-2 rounded mt-6"
-          >{{ profileDetailsSaving ? "Gemmer..." : "Gem ændringer" }}
+          class="bg-secondary text-primary px-4 py-2 rounded mt-6"
+        >
+          {{ profileDetailsSaving ? "Gemmer..." : "Gem ændringer" }}
         </button>
-        <p class="text-green-400 mt-2" v-if="profileDetailsMessage">{{ profileDetailsMessage }}</p>
+        <p class="text-green-400 mt-2" v-if="profileDetailsMessage">
+          {{ profileDetailsMessage }}
+        </p>
       </div>
 
       <!-- Adresseoplysninger -->
@@ -181,7 +163,6 @@ async function logout() {
             v-model="profileStore.adresse"
             class="w-full bg-transparent border-b border-white outline-none"
           />
-
           <div class="flex gap-4 mt-4">
             <div class="w-1/2">
               <label class="block text-sm">Postnummer</label>
@@ -200,7 +181,6 @@ async function logout() {
               />
             </div>
           </div>
-
           <label class="block text-sm mt-4">Land</label>
           <input
             type="text"
@@ -209,24 +189,15 @@ async function logout() {
           />
         </div>
         <button
-
-          @click="saveProfile"
-          :disabled="profileIsSaving"
-          class="bg-secondary text-primary px-4 py-2 rounded mt-6"
-        >
-          {{ profileIsSaving ? "Gemmer..." : "Gem ændringer" }}
-        </button>
-        <p class="text-green-400 mt-2" v-if="profileSaveMessage">
-          {{ profileSaveMessage }}
-        </p>
-
           @click="saveAddressDetails"
           :disabled="addressSaving"
-           class="bg-secondary text-primary px-4 py-2 rounded mt-6"
-          >{{ addressSaving ? "Gemmer..." : "Gem ændringer" }}
+          class="bg-secondary text-primary px-4 py-2 rounded mt-6"
+        >
+          {{ addressSaving ? "Gemmer..." : "Gem ændringer" }}
         </button>
-          <p class="text-green-400 mt-2" v-if="addressMessage">{{ addressMessage }}</p>
-
+        <p class="text-green-400 mt-2" v-if="addressMessage">
+          {{ addressMessage }}
+        </p>
       </div>
 
       <!-- Ændring af adgangskode -->
@@ -240,7 +211,6 @@ async function logout() {
             v-model="currentPassword"
             class="w-full bg-transparent border-b border-white outline-none"
           />
-
           <label class="block text-sm mt-4">Nyt kodeord</label>
           <input
             type="password"
@@ -256,9 +226,7 @@ async function logout() {
         >
           {{ isLoading ? "Gemmer..." : "Gem ændringer" }}
         </button>
-        <p class="text-green-400 mt-2" v-if="successMessage">
-          {{ successMessage }}
-        </p>
+        <p class="text-green-400 mt-2" v-if="successMessage">{{ successMessage }}</p>
         <p class="text-red-400 mt-2" v-if="errorMessage">{{ errorMessage }}</p>
       </div>
 
@@ -281,8 +249,7 @@ async function logout() {
       <div class="bg-white rounded-lg p-6 max-w-md w-full">
         <h3 class="text-xl font-bold mb-4">Bekræft sletning</h3>
         <p class="mb-6">
-          Er du sikker på, at du vil slette din profil? Denne handling kan ikke
-          fortrydes.
+          Er du sikker på, at du vil slette din profil? Denne handling kan ikke fortrydes.
         </p>
         <div class="flex justify-end gap-4">
           <button
@@ -291,7 +258,6 @@ async function logout() {
           >
             Annuller
           </button>
-          
           <button
             @click="deleteProfile"
             :disabled="isLoading"
