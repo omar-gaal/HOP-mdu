@@ -75,7 +75,7 @@ const logout = async () => {
       />
       </NuxtLink>
         <button @click="isOpen = false" aria-label="Close menu">
-          <img src="../assets/icon/close.png" alt="Close menu icon" />
+          <img class="w-20"src="../assets/icon/close.png" alt="Close menu icon" />
         </button>
       </div>
     </header>
