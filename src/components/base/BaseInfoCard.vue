@@ -15,7 +15,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="border-2 border-solid p-5 bg-primary h-80 w-96 flex flex-col justify-between">
+  <div class="border-2 border-solid p-5 bg-primary h-80  sm:w-96 flex flex-col justify-between">
     <div>
       <h1 class="pb-9 text-white text-3xl font-bold">{{ title }}</h1>
       
