@@ -1,9 +1,9 @@
 
 <template>
 
-  <div class="relative py-16 px-6 md:px-16 bg-[#f5fdfb]">
-    <div class="absolute inset-0 bg-gradient-to-br from-emerald-100 to-yellow-100 opacity-40 z-0"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-transparent to-white opacity-20 z-0"></div>
+  <div class="relative py-16 px-6 md:px-16 ">
+    <div class="absolute "></div>
+    <div class="absolute inset-0 "></div>
     <div class="relative max-w-4xl mx-auto bg-secondary/80 backdrop-blur-md p-10 text-semibold rounded shadow-md z-10">
       
       <h1 class="text-3xl font-bold mb-6">Dine data & GDPR</h1>
