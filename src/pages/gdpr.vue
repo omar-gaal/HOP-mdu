@@ -12,7 +12,7 @@
         <h2 class="text-xl font-semibold">Hvilke data vi gemmer</h2>
         <p class="mt-2">
           Kun de oplysninger, der er nødvendige for at levere en sikker og
-          personlig brugeroplevelse...
+          personlig brugeroplevelse
         </p>
       </section>
 
