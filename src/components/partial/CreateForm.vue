@@ -26,16 +26,17 @@ const hasUppercase = computed(() => /[A-Z]/.test(password.value));
 const hasNumberOrSymbol = computed(() => /[\d\W]/.test(password.value));
 
 async function handleSubmit() {
-  // !confirmPassword.value
+  !confirmPassword.value
+
   if (!name.value || !email.value || !userName.value || !password.value ) {
     alert("Udfyld venligst alle felter.");
     return;
   }
 
-  // if (password.value !== confirmPassword.value) {
-  //   alert("Adgangskoderne matcher ikke.");
-  //   return;
-  // }
+  if (password.value !== confirmPassword.value) {
+    alert("Adgangskoderne matcher ikke.");
+    return;
+  }
 
   modal.setForm("loading");
 
@@ -48,7 +49,7 @@ async function handleSubmit() {
     }, 3000);
   } else {
     alert(result.error || "Noget gik galt. Prøv igen.");
-    modal.setForm("create"); // Stay on create form if error
+    modal.setForm("create"); 
   }
 }
 </script>
@@ -180,11 +181,14 @@ async function handleSubmit() {
       </div>
 
       <button
+        v-if="hasLowercase && hasUppercase && hasNumberOrSymbol && isLengthValid"
         type="submit"
         class="block mx-auto min-w-32 bg-[var(--color-secondary)] text-black font-semibold py-2 rounded hover:opacity-90 transition"
       >
         Opret konto
       </button>
+
+  
     </form>
     </div>
   </div>
