@@ -44,7 +44,7 @@ const showPassword = ref(false);
   <transition name="fade">
     <div
       v-if="modal.activeForm === 'login'"
-      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-2"
       @click.self="modal.close"
     >
       <div
@@ -178,7 +178,7 @@ const showPassword = ref(false);
             class="underline text-white hover:text-[var(--color-secondary)]"
           >
             Opret login til ny <br />
-            eller eksisterende konto
+            konto
           </a>
 
           <a

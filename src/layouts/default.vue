@@ -20,7 +20,7 @@ const isMobile = computed(() => width.value < 1080);
     </div>
 
    
-    <main class="flex-grow">
+    <main class="flex-grow pb-64 sm:pb-20">
       <slot />
     </main>
 
