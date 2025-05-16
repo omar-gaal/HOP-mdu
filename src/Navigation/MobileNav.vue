@@ -19,13 +19,17 @@ interface NavigationItem {
 }
 
 
+function myPageAuthCheck() {
+  if (!auth.isAuthenticated) {
+    alert("Du skal være logget ind først")
+  }
 
+}
 
 const navItem = ref<NavigationItem[]>([
   { navName: 'Produkter', href: '/produkter' },
   { navName: 'Services', href: '/page-not-found' },
   { navName: 'Om os', href: '/page-not-found' },
-  { navName: 'Min side', href: '/konto' },
 ]);
 
 
@@ -92,6 +96,16 @@ const logout = async () => {
     </NuxtLink>
   </li>
 
+   
+  <li  @click="myPageAuthCheck" class="text-white text-2xl text-center block cursor-pointer ">
+
+    <NuxtLink  @click="isOpen = false" to="/konto">
+      Min side 
+      <hr class="w-80 border-t-2 border-secondary mt-2" />
+
+    </NuxtLink>
+    
+  </li>
  
   <li v-if="!auth.isAuthenticated">
     <button
