@@ -22,7 +22,7 @@
           <li>Ordrehistorik </li>
         </ul>
         <p class="mt-2">
-          Al kommunikation sker via HTTPS, og brugerens session håndteres sikkert med JWT-tokens lagret i krypterede cookies.
+          Alt kommunikation sker via HTTPS, og brugerens session håndteres sikkert med JWT-tokens lagret i krypterede cookies.
         </p>
       </section>
 
