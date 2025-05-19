@@ -12,7 +12,6 @@ const userName = ref("")
 const password = ref("");
 
 const confirmPassword = ref("");
-const brugernavn = ref("");
 
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
@@ -26,7 +25,6 @@ const hasUppercase = computed(() => /[A-Z]/.test(password.value));
 const hasNumberOrSymbol = computed(() => /[\d\W]/.test(password.value));
 
 async function handleSubmit() {
-  !confirmPassword.value
 
   if (!name.value || !email.value || !userName.value || !password.value ) {
     alert("Udfyld venligst alle felter.");
