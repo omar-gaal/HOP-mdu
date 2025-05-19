@@ -178,7 +178,7 @@ const showPassword = ref(false);
             class="underline text-white hover:text-[var(--color-secondary)]"
           >
             Opret login til ny <br />
-            eller eksisterende konto
+            konto
           </a>
 
           <a
