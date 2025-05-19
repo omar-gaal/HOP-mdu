@@ -32,3 +32,8 @@ Dette projekt er udviklet som en afsluttende opgave på Multimediadesignuddannel
 ## Struktur og arkitektur
 
 Projektet er bygget op med en komponentbaseret og modulær struktur. Alle funktioner er opdelt i:
+
+/components
+/pages
+/stores
+/middleware
