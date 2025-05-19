@@ -6,7 +6,6 @@ definePageMeta({
 import { useUsername } from "#imports";
 import { useProfileStore } from "@/stores/useProfileStore";
 import { useRouter } from "vue-router";
-import { nextTick } from "vue";
 
 const userName = useUsername();
 const profileStore = useProfileStore();
@@ -94,7 +93,6 @@ const updatePassword = async () => {
 const deleteProfile = async () => {
   isLoading.value = true;
   showDeletePopup.value = false;
-  await nextTick();
   setTimeout(async () => {
     alert("Din konto vil nu blive slettet af en Admin indenfor 24 timer.");
     await auth.logout();
