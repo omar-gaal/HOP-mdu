@@ -38,7 +38,7 @@ const footerLinks = [
         <a href="/" class="underline text-sm hover:opacity-80"
           >Cookie indstillinger</a
         >
-        <a href="/" class="underline text-sm hover:opacity-80">Privatpolitik</a>
+        <a href="/gdpr" class="underline text-sm hover:opacity-80">Privatpolitik</a>
       </div>
 
       <div class="flex flex-col lg:flex-row gap-44 text-center text-2xl md:text-left">
