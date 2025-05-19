@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', {
   }),
   
   actions: {
-    async  init() {
+    init():Promise <void> {
       return new Promise((resolve) => {
         const authUser = useCookie('authUser');
         const authToken = useCookie('auth');
@@ -55,6 +55,7 @@ export const useAuthStore = defineStore('auth', {
           this.clearAuth();
         }
         this.loading = false;
+        resolve(); 
       });
     },
 
@@ -170,7 +171,6 @@ export const useAuthStore = defineStore('auth', {
         this.setUser({
           key: response.key,
           email: response.email,
-          name: response.name,
           userName: response.userName,
         });
         this.isAuthenticated = true;
