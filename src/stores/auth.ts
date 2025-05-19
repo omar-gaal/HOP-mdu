@@ -10,16 +10,9 @@ interface User {
   
 }
 
-interface Member {
-  key: string;
-  name: string;
-  email: string;
-  userName: string;
-}
-
 interface LoginResponse {
   token: string;
-  member: Member;
+  member: User;
 }
 
 interface CheckAuthResponse {
@@ -97,12 +90,13 @@ export const useAuthStore = defineStore('auth', {
     },
 
     // Login method that calls the backend API and handles the response
-    async login(email: string, password: string) {
+    async login(userName: string, password: string) {
       try {
         const response: LoginResponse = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
           method: 'POST',
-          body: { userName: email, password },
+          body: { userName, password },
         });
+
 
         if (response && response.token) {
           const authToken = useCookie('auth');
