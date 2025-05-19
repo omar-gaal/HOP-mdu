@@ -37,3 +37,64 @@ Projektet er bygget op med en komponentbaseret og modulær struktur. Alle funkti
 /pages
 /stores
 /middleware
+
+
+
+API-kald er centraliseret med `$fetch` og bruger cookies for at opretholde sessionsstatus. `middleware/protected.ts` bruges til at beskytte sider bag login.
+
+##  API-integration
+
+Projektet anvender følgende endpoints fra Umbracos backend:
+
+- `POST /api/member-profile/log-in`
+- `POST /api/member-profile/log-out`
+- `GET /api/member-profile/is-logged-in`
+- `POST /api/members` (til opretning)
+- `PATCH /api/member-profile/password` (ændring af adgangskode)
+
+## Sådan implementeres løsningen i Novicell Foundation
+
+Dette projekt fungerer som en selvstændig Nuxt 3 frontend-applikation, der fungerer client-side og kommunikerer med Umbraco backend via API. For at integrere denne løsning i Novicells Foundation-setup anbefaler vi følgende:
+
+1. **Integrér komponenterne** fra vores løsning direkte i Foundation-projektet.
+2. **Kopier følgende filer og mapper**:
+   - `stores/auth.ts`
+   - `middleware/protected.ts`
+   - `components/partial/LoginForm.vue`
+   - `components/partial/CreateForm.vue`
+   - `pages/konto/*.vue` (Min side + undersektioner)
+3. **Opsæt nødvendige cookies** og `$fetch`-kald til API-endpoints.
+4. **Tilpas styling** så det matcher Foundation-designet (brug Tailwind classes).
+
+## Filstruktur 
+
+
+src/
+├── components/
+│ └── partial/
+│ ├── LoginForm.vue
+│ └── CreateForm.vue
+├── pages/
+│ └── konto/
+│ ├── index.vue
+│ ├── profile.vue
+│ ├── favoritter.vue
+│ └── ordrehistorik.vue
+├── stores/
+│ └── auth.ts
+├── middleware/
+│ └── protected.ts
+
+
+##  Demo
+
+
+
+##  Udviklere
+
+- Omar Gaal
+- Hani Zaghmout 
+
+##  Licens
+
+Projektet er lavet til undervisningsbrug og må ikke genbruges kommercielt uden tilladelse.
