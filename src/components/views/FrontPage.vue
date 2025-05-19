@@ -19,7 +19,6 @@ const favorites = useFavoritesStore();
 
 <template>
   <main>
-  <h1>hello from clean up branch </h1>
     <BaseContainer :fullWidth="false">
       <BaseHero />
       <!-- (Din login knap ligger sikkert her) -->
