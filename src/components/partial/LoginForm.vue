@@ -68,7 +68,7 @@ const showPassword = ref(false);
           </p>
 
           <div>
-            <label for="email" class="block text-sm font-medium mb-1"
+            <label for="userName" class="block text-sm font-medium mb-1"
               >Brugernavn</label
             >
             <input

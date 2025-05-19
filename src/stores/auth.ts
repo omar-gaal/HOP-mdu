@@ -3,23 +3,16 @@ import { defineStore } from "pinia";
 
 // Define the types for the user and related data
 interface User {
-  id: string;
+  key: string;
   email: string;
   name: string;
   userName: string;
   
 }
 
-interface Member {
-  key: string;
-  name: string;
-  email: string;
-  userName: string;
-}
-
 interface LoginResponse {
   token: string;
-  member: Member;
+  member: User;
 }
 
 interface CheckAuthResponse {
@@ -97,12 +90,13 @@ export const useAuthStore = defineStore('auth', {
     },
 
     // Login method that calls the backend API and handles the response
-    async login(email: string, password: string) {
+    async login(userName: string, password: string) {
       try {
         const response: LoginResponse = await $fetch('https://app-cshf-umbraco.azurewebsites.net/api/member-profile/log-in', {
           method: 'POST',
-          body: { userName: email, password },
+          body: { userName, password },
         });
+
 
         if (response && response.token) {
           const authToken = useCookie('auth');
@@ -110,7 +104,7 @@ export const useAuthStore = defineStore('auth', {
 
           // Save the user data and set it in the store
           this.setUser({
-            id: response.member.key,
+            key: response.member.key,
             email: response.member.email,
             name: response.member.name,
             userName: response.member.userName,
@@ -179,7 +173,7 @@ export const useAuthStore = defineStore('auth', {
 
         // Set user information if the user is authenticated
         this.setUser({
-          id: response.key,
+          key: response.key,
           email: response.email,
           name: response.name,
           userName: response.userName,
