@@ -18,11 +18,11 @@ const showConfirmPassword = ref(false);
 
 
 const isLengthValid = computed(
-  () => password.value.length >= 8 && password.value.length <= 25
+  () => password.value.length >=10  && password.value.length <= 25
 );
 const hasLowercase = computed(() => /[a-z]/.test(password.value));
 const hasUppercase = computed(() => /[A-Z]/.test(password.value));
-const hasNumberOrSymbol = computed(() => /[\d\W]/.test(password.value));
+const hasNumber = computed(() => /[\d/]/.test(password.value));
 
 async function handleSubmit() {
 
@@ -164,7 +164,7 @@ async function handleSubmit() {
       <div class="mt-6 text-white text-sm space-y-2">
         <ul class="list-disc pl-5">
           <li :class="isLengthValid ? 'text-green-400' : 'text-white'">
-            8-25 tegn
+            10-25 tegn
           </li>
           <li :class="hasLowercase ? 'text-green-400' : 'text-white'">
             Små bogstaver
@@ -172,14 +172,14 @@ async function handleSubmit() {
           <li :class="hasUppercase ? 'text-green-400' : 'text-white'">
             Store bogstaver
           </li>
-          <li :class="hasNumberOrSymbol ? 'text-green-400' : 'text-white'">
-            Tal eller tegn
+          <li :class="hasNumber ? 'text-green-400' : 'text-white'">
+            Tal
           </li>
         </ul>
       </div>
-
+      
       <button
-        v-if="hasLowercase && hasUppercase && hasNumberOrSymbol && isLengthValid"
+      v-if="hasLowercase && hasUppercase && hasNumber && isLengthValid"
         type="submit"
         class="block mx-auto min-w-32 bg-[var(--color-secondary)] text-black font-semibold py-2 rounded hover:opacity-90 transition"
       >
