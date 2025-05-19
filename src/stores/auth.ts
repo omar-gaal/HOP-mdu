@@ -3,9 +3,8 @@ import { defineStore } from "pinia";
 
 // Define the types for the user and related data
 interface User {
-  id: string;
+  key: string;
   email: string;
-  name: string;
   userName: string;
   
 }
@@ -38,11 +37,10 @@ export const useAuthStore = defineStore('auth', {
   }),
   
   actions: {
-    init(): Promise<void> {
+    init():Promise <void> {
       return new Promise((resolve) => {
         const authUser = useCookie('authUser');
         const authToken = useCookie('auth');
-    
         try {
           if (authUser.value) {
             this.user = authUser.value as unknown as User;
@@ -56,9 +54,8 @@ export const useAuthStore = defineStore('auth', {
           console.error('Invalid cookie format', error);
           this.clearAuth();
         }
-    
         this.loading = false;
-        resolve();
+        resolve(); 
       });
     },
 
@@ -104,9 +101,8 @@ export const useAuthStore = defineStore('auth', {
 
           // Save the user data and set it in the store
           this.setUser({
-            id: response.member.key,
+            key: response.member.key,
             email: response.member.email,
-            name: response.member.name,
             userName: response.member.userName,
           });
 
@@ -173,9 +169,8 @@ export const useAuthStore = defineStore('auth', {
 
         // Set user information if the user is authenticated
         this.setUser({
-          id: response.key,
+          key: response.key,
           email: response.email,
-          name: response.name,
           userName: response.userName,
         });
         this.isAuthenticated = true;
