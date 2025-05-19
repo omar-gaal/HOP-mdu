@@ -69,8 +69,23 @@ Dette projekt fungerer som en selvstændig Nuxt 3 frontend-applikation, der fung
 ## Filstruktur 
 
 
- ```text src/ ├── components/ │ └── partial/ │ ├── LoginForm.vue │ └── CreateForm.vue ├── pages/ │ └── konto/ │ ├── index.vue │ ├── profile.vue │ ├── favoritter.vue │ └── ordrehistorik.vue ├── stores/ │ └── auth.ts ├── middleware/ │ └── protected.ts ``` 
-
+```text
+src/
+├── components/
+│   └── partial/
+│       ├── LoginForm.vue
+│       └── CreateForm.vue
+├── pages/
+│   └── konto/
+│       ├── index.vue
+│       ├── profile.vue
+│       ├── favoritter.vue
+│       └── ordrehistorik.vue
+├── stores/
+│   └── auth.ts
+├── middleware/
+│   └── protected.ts
+```
 
 ##  Demo
 
