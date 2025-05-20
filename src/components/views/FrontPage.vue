@@ -19,7 +19,6 @@ const favorites = useFavoritesStore();
 
 <template>
   <main>
-    <h1>testing if my code goes to production</h1>
     <BaseContainer :fullWidth="false">
       <BaseHero />
   
