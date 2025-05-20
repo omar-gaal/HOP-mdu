@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import BaseImage from "./BaseImage.vue";
-import BaseButton from "./BaseButton.vue";
+
+
 import heroImage from "../../assets/img/hero.webp";
 
 function scrollToProducts() {

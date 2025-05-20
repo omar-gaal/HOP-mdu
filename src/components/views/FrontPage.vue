@@ -21,7 +21,7 @@ const favorites = useFavoritesStore();
   <main>
     <BaseContainer :fullWidth="false">
       <BaseHero />
-      <!-- (Din login knap ligger sikkert her) -->
+  
     </BaseContainer>
 
     <BaseModal>
