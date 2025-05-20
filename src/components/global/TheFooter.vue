@@ -3,24 +3,28 @@ const footerLinks = [
   {
     title: "Kundeservice",
     links: [
-      "Mandag 10:00 - 17:00",
-      "Tirsdag 10:00 - 17:00",
-      "Onsdag 10:00 - 17:00",
-      "Torsdag 10:00 - 17:00",
+      { text: "Mandag 10:00 - 17:00", url: "#" },
+      { text: "Tirsdag 10:00 - 17:00", url: "#" },
+      { text: "Onsdag 10:00 - 17:00", url: "#" },
+      { text: "Torsdag 10:00 - 17:00", url: "#" },
     ],
   },
   {
     title: "Om TechTing",
     links: [
-      "Email: TechT@gmail.dk ",
-      "Kontakt: 22 33 44 33",
-      "Adresse: Engdahlsvej 1",
-      "TechTing A/S",
+      { text: "Email: TechT@gmail.dk ", url: "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook" },
+      { text: "Kontakt: 22 33 44 33", url: "tel:+4522334433" },
+      { text: "Adresse: Engdahlsvej 1", url: "https://www.google.com/maps/place/Engdahlsvej+1,+7400+Herning/@56.135516,9.0051282,17z/data=!3m1!4b1!4m5!3m4!1s0x464bbc1a54f2f727:0x2465df6037492b0d!8m2!3d56.135513!4d9.0077031?entry=ttu&g_ep=EgoyMDI1MDUxNS4wIKXMDSoASAFQAw%3D%3D" },
+      { text: "TechTing A/S", url: "http://localhost:3000/" },
     ],
   },
   {
     title: "Følg os",
-    links: ["Facebook", "Instagram", "Twitter"],
+    links: [
+      { text: "Facebook", url: "https://www.facebook.com/" },
+      { text: "Instagram", url: "https://www.instagram.com/" },
+      { text: "X", url: "https://x.com/" },
+    ],
   },
 ];
 </script>
@@ -45,7 +49,9 @@ const footerLinks = [
         <div  v-for="section in footerLinks" :key="section.title">
           <h3 class="font-semibold mb-2">{{ section.title }}</h3>
           <ul class="space-y-1 text-base text-gray-300">
-            <li class="p-3 lg:p-1" v-for="link in section.links" :key="link">{{ link }}</li>
+            <li class="p-3 lg:p-1" v-for="link in section.links" :key="link.text">
+              <a :href="link.url" class="hover:underline">{{ link.text }}</a>
+            </li>
           </ul>
         </div>
       </div>
