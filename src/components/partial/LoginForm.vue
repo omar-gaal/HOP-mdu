@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Transition } from "vue";
+import { ref } from "vue";
 import { useModal } from "@/stores/modal";
 import { useAuthStore } from "@/stores/auth";
 
@@ -68,7 +68,7 @@ const showPassword = ref(false);
           </p>
 
           <div>
-            <label for="email" class="block text-sm font-medium mb-1"
+            <label for="userName" class="block text-sm font-medium mb-1"
               >Brugernavn</label
             >
             <input
@@ -172,22 +172,12 @@ const showPassword = ref(false);
         </form>
 
         <div class="mt-6 flex justify-between text-sm">
-          <a
-            href="#"
-            @click.prevent="modal.setForm('create')"
-            class="underline text-white hover:text-[var(--color-secondary)]"
-          >
-            Opret login til ny <br />
-            konto
-          </a>
-
-          <a
-            href="#"
-            class="underline text-white hover:text-[var(--color-secondary)]"
-            @click.prevent="modal.setForm('forgot')"
-          >
+          <button @click="modal.setForm('create')" type="button" class="underline text-white hover:text-[var(--color-secondary)]">
+            Opret login til ny <br /> konto
+          </button>
+          <button @click="modal.setForm('forgot')" type="button" class="underline text-white hover:text-[var(--color-secondary)]">
             Glemt adgangskode?
-          </a>
+          </button>
         </div>
       </div>
     </div>
