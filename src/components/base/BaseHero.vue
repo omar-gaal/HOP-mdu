@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+
 
 
 import heroImage from "../../assets/img/hero.webp";
