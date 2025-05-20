@@ -39,9 +39,6 @@ const footerLinks = [
       >
         <img src="../../assets/icon/logo.webp" alt="logo" class="w-36" />
         <span class="text-sm text-gray-300">©2025 company A/S</span>
-        <a href="/" class="underline text-sm hover:opacity-80"
-          >Cookie indstillinger</a
-        >
         <a href="/gdpr" class="underline text-sm hover:opacity-80">Privatpolitik</a>
       </div>
 
