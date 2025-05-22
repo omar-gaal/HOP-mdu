@@ -7,7 +7,7 @@ const modal = useModal();
 <template>
   <button
     @click="modal.open('login')"
-    class="bg-secondary text-primary  px-[45px] py-3 text-[22px] border border-black rounded-lg"
+    class="bg-secondary text-primary  px-[35px] py-0.5 text-[20px] border border-black rounded-lg"
   >
     Login
   </button>
