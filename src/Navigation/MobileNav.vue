@@ -44,11 +44,11 @@ const logout = async () => {
   <!-- Mobile Header -->
   <header v-if="!isOpen" class="flex bg-primary h-20 justify-between items-center px-4">
     <NuxtLink to="/">
-    <img src="../assets/icon/logo.webp" alt="Logo" class=" w-32 h-full" />
+    <img  src="../assets/icon/logo.webp" alt="Logo" class=" w-32 h-full" />
     </NuxtLink>
     <nav class="flex items-center gap-6">
       <NuxtLink to="/">
-        <img v-if="!auth.isAuthenticated" class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
+        <img  @click="modal.open('login'); isOpen = false" v-if="!auth.isAuthenticated" class="h-10 w-10" src="../assets/icon/userIcon.webp" alt="User icon" />
       </NuxtLink>
       <NuxtLink to="/konto">
         <BaseInitialIcon v-if="auth.isAuthenticated"
