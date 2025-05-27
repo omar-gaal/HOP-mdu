@@ -17,7 +17,7 @@ definePageMeta({
 
 <template>
 
-
+<h1>This is version 2</h1>
     <FrontPage/>
 
   
