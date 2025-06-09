@@ -1,11 +1,12 @@
 <script setup lang="ts">
+  import { useUsername } from "#imports";
+  import { useProfileStore } from "@/stores/useProfileStore";
+  import { useRouter } from "vue-router";
+  
 definePageMeta({
   middleware: "protected",
 });
 
-import { useUsername } from "#imports";
-import { useProfileStore } from "@/stores/useProfileStore";
-import { useRouter } from "vue-router";
 
 const userName = useUsername();
 const profileStore = useProfileStore();
@@ -83,7 +84,7 @@ const updatePassword = async () => {
     currentPassword.value = "";
     newPassword.value = "";
   } catch (error: any) {
-    errorMessage.value = error?.data?.message || error?.message || "Noget gik galt...";
+    errorMessage.value = "koden stemmer ikke overens..";
     console.error("Fejl under opdatering af adgangskode:", error);
   } finally {
     isLoading.value = false;
