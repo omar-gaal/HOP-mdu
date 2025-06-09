@@ -27,18 +27,11 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@vueuse/nuxt',
-    '@nuxt/image',
-    '@nuxtjs/google-fonts',
-    '@nuxt/icon',
-    [
-      '@pinia/nuxt',
-      {
-        autoImports: ['defineStore', 'acceptHMRUpdate', ['defineStore', 'definePiniaStore']]
-      }
-    ],
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/image', '@nuxtjs/google-fonts', '@nuxt/icon', [
+    '@pinia/nuxt',
+    {
+      autoImports: ['defineStore', 'acceptHMRUpdate', ['defineStore', 'definePiniaStore']]
+    }
+  ], '@nuxt/eslint'],
   compatibilityDate: '2025-03-23'
 });
